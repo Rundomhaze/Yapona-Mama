@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { signupUser, signinUser } from '../../reducers/authReducer';
 import { useDispatch, useSelector } from 'react-redux';
+import './Auth.css';
 
 function Auth() {
   const [email, setEmail] = useState('');
@@ -17,12 +18,13 @@ function Auth() {
   }
 
   return (
-    <div>
+
+
+    <div className="container center" >
       {loading &&
         <div className="progress">
           <div className="indeterminate"></div>
         </div>
-
       }
       <h1>please {auth}!</h1>
       {error &&
@@ -43,11 +45,16 @@ function Auth() {
           <h6 onClick={() => setAuth('signup')}>Dont have an account ?</h6> :
           <h6 onClick={() => setAuth('signin')}>Already have an account?</h6>
       }
+
       <button className="btn #ff4081 pink accent-2" onClick={() => authenticate()}>{auth}</button>
+
     </div>
+
   )
 }
 
 
 export default Auth;
+
+
 

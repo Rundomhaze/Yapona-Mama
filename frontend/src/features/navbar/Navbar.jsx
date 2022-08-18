@@ -16,7 +16,7 @@ function Navbar() {
             <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
               <li><a href="/">Меню</a></li>
-              <li><a href="#"><Link to="/auth">Войти</Link></a></li>
+              <li><Link to="/auth">Войти</Link></li>
               <li><a href="/">Акции</a></li>
               <li><a href="/">Корзина</a></li>
               <li><a href="/">Доставка</a></li>

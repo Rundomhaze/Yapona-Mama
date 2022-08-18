@@ -1,0 +1,28 @@
+.redbtn {
+  position: absolute !important;
+  bottom: 130px !important;
+  left: 85% !important
+}
+
+.onecard {
+  position: relative !important;
+  height: 300px;
+  border-radius: 5px !important
+}
+
+.imageroll {
+  height: 150px;
+  width: 100%
+}
+
+.desccard {
+  font-size: 11px;
+}
+
+.titlecard {
+  margin-left: 23px !important; 
+  margin-right: 23px !important;
+}
+.typeroll{
+  font-size: 8px;
+}

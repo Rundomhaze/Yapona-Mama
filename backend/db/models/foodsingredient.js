@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class FoodsIngredient extends Model {
     static associate({ Food, Ingredient }) {
-      FoodsIngredient.belongsTo(Food);
-      FoodsIngredient.belongsTo(Ingredient);
+      FoodsIngredient.belongsTo(Food, { foreignKey: 'food_id' });
+      FoodsIngredient.belongsTo(Ingredient, { foreignKey: 'food_id' });
     }
   }
   FoodsIngredient.init({
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER,
       references: {
-        model: 'Food',
+        model: 'Foods',
         key: 'id',
       },
       onDelete: 'cascade',
@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'FoodsIngredient',
-    tableName: 'foodsIngredients',
+    tableName: 'FoodsIngredients',
   });
   return FoodsIngredient;
 };

@@ -5,16 +5,17 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class OrdersFood extends Model {
     static associate({ Order, Food }) {
-      OrdersFood.belongsTo(Order);
-      OrdersFood.belongsTo(Food);
+      OrdersFood.belongsTo(Order, { foreignKey: 'order_id' });
+      OrdersFood.belongsTo(Food, { foreignKey: 'food_id' });
     }
   }
   OrdersFood.init({
     order_id: {
       allowNull: false,
+      primaryKey: true,
       type: DataTypes.INTEGER,
       references: {
-        model: 'Orders',
+        model: 'Order',
         key: 'id',
       },
       onDelete: 'cascade',
@@ -22,9 +23,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     food_id: {
       allowNull: false,
+      primaryKey: true,
       type: DataTypes.INTEGER,
       references: {
-        model: 'Food',
+        model: 'Foods',
         key: 'id',
       },
       onDelete: 'cascade',
@@ -47,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'OrdersFood',
-    tableName: 'ordersFoods',
+    tableName: 'OrdersFoods',
   });
   return OrdersFood;
 };

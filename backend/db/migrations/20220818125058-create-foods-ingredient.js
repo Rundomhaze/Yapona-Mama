@@ -6,7 +6,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Food',
+          model: 'Foods',
           key: 'id',
         },
         onDelete: 'cascade',

@@ -4,9 +4,9 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
-    static associate({ User, OrderFood }) {
-      Order.belongsTo(User);
-      Order.hasMany(OrderFood, { foreignKey: 'order_id' });
+    static associate({ User, OrdersFood }) {
+      Order.belongsTo(User, { foreignKey: 'user_id' });
+      Order.hasMany(OrdersFood, { foreignKey: 'order_id' });
     }
   }
   Order.init({
@@ -62,7 +62,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Order',
-    tableName: 'orders',
+    tableName: 'Orders',
   });
   return Order;
 };

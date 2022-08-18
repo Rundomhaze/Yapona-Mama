@@ -5,13 +5,13 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Food extends Model {
     static associate({
-      UsersFood, FoodsIngredient, OrderFood, Type, Subtype,
+      UsersFood, FoodsIngredient, OrdersFood, Type, Subtype,
     }) {
       Food.hasMany(UsersFood, { foreignKey: 'food_id' });
       Food.hasMany(FoodsIngredient, { foreignKey: 'food_id' });
-      Food.hasMany(OrderFood, { foreignKey: 'food_id' });
-      Food.belongsTo(Type);
-      Food.belongsTo(Subtype);
+      Food.hasMany(OrdersFood, { foreignKey: 'food_id' });
+      Food.belongsTo(Type, { foreignKey: 'type_id' });
+      Food.belongsTo(Subtype, { foreignKey: 'subtype_id' });
     }
   }
   Food.init({
@@ -70,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Food',
-    tableName: 'foods',
+    tableName: 'Foods',
   });
   return Food;
 };

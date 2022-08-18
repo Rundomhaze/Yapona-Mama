@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Type extends Model {
     static associate({ Food }) {
-      Type.hasOne(Food, { foreignKey: 'type_id' });
+      Type.hasMany(Food, { foreignKey: 'type_id' });
     }
   }
   Type.init({
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Type',
-    tableName: 'types',
+    tableName: 'Types',
   });
   return Type;
 };

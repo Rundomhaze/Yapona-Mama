@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class UsersAddress extends Model {
     static associate({ User, Address }) {
-      UsersAddress.belongsTo(User);
-      UsersAddress.belongsTo(Address);
+      UsersAddress.belongsTo(User, { foreignKey: 'user_id' });
+      UsersAddress.belongsTo(Address, { foreignKey: 'address_id' });
     }
   }
   UsersAddress.init({
@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'UsersAddress',
-    tableName: 'usersAddresses',
+    tableName: 'UsersAddresses',
   });
   return UsersAddress;
 };

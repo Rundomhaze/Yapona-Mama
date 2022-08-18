@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { User, OrdersFood, Order } = require('../../db/models');
+const { UsersFood } = require('../../db/models');
 
 router
   .get('/cart', async (req, res) => {
@@ -9,17 +9,22 @@ router
     // if (user) {
     const { user_id } = req.body;
 
-    const order = await OrdersFood.findAll({
-      raw: true,
-      order: [['id', 'DESC']],
-      include: [{
-        model: Order,
-        where: { user_id },
-        required: false,
-      }],
-    });
+    const order = await UsersFood.findAll();
+
+    // const order = await Order.findAll({
+    //   raw: true,
+    //   order: [['id', 'DESC']],
+    //   include: [{
+    //     model: OrdersFood,
+    //     where: { user_id: Number(user_id) },
+    //     required: false,
+    //   }],
+    // });
+
     res.status(201).json({ order });
     // } else {
     //   res.redirect('/login');
     // }
   });
+
+module.exports = router;

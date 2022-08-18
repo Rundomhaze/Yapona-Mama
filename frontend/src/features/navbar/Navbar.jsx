@@ -1,30 +1,34 @@
 import React from "react";
+import { Outlet, useNavigate, Link } from "react-router-dom";
 import './Navbar.css';
 
 function Navbar() {
   return (
     <>
+      {/* <Link to="/profile">Личный кабинет</Link> */}
+      {/* <button type="button" onClick={() => navigate('/profile')}>
+        Личный кабинет
+      </button> */}
       <div className="divnavbar">
         <nav>
           <div className="nav-wrapper sticky-nav">
             <a href="/" className="brand-logo">Logo</a>
             <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
-              <li><a href="sass.html">Меню</a></li>
-              <li><a href="sass.html">Войти</a></li>
-              <li><a href="sass.html">Регистрация</a></li>
-              <li><a href="badges.html">Акции</a></li>
-              <li><a href="collapsible.html">Корзина</a></li>
-              <li><a href="mobile.html">Доставка</a></li>
+              <li><a href="/">Меню</a></li>
+              <li><a href="#"><Link to="/auth">Войти</Link></a></li>
+              <li><a href="/">Акции</a></li>
+              <li><a href="/">Корзина</a></li>
+              <li><a href="/">Доставка</a></li>
             </ul>
           </div>
         </nav>
 
         <ul className="sidenav" id="mobile-demo">
-          <li><a href="sass.html">Меню</a></li>
-          <li><a href="badges.html">Акции</a></li>
-          <li><a href="collapsible.html">Корзина</a></li>
-          <li><a href="mobile.html">Доставка</a></li>
+          <li><a href="/">Меню</a></li>
+          <li><a href="/">Акции</a></li>
+          <li><a href="/">Корзина</a></li>
+          <li><a href="/">Доставка</a></li>
         </ul>
       </div>
       <nav>
@@ -36,6 +40,7 @@ function Navbar() {
           </ul>
         </div>
       </nav>
+      <Outlet />
     </>
   )
 }

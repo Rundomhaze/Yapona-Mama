@@ -53,7 +53,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }];
-    await queryInterface.bulkInsert('Food', foods, {});
+    await queryInterface.bulkInsert('Foods', foods, {});
   },
 
   async down() {

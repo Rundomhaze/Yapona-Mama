@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
       Food.hasMany(UsersFood, { foreignKey: 'food_id' });
       Food.hasMany(FoodsIngredient, { foreignKey: 'food_id' });
       Food.hasMany(OrdersFood, { foreignKey: 'food_id' });
-      Food.belongsTo(Type);
-      Food.belongsTo(Subtype);
+      Food.belongsTo(Type, { foreignKey: 'type_id' });
+      Food.belongsTo(Subtype, { foreignKey: 'subtype_id' });
     }
   }
   Food.init({
@@ -70,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Food',
-    tableName: 'foods',
+    tableName: 'Foods',
   });
   return Food;
 };

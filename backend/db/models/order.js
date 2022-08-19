@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     static associate({ User, OrdersFood }) {
-      Order.belongsTo(User);
+      Order.belongsTo(User, { foreignKey: 'user_id' });
       Order.hasMany(OrdersFood, { foreignKey: 'order_id' });
     }
   }
@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       onUpdate: 'cascade',
     },
     total_price: {
+      defaultValue: 0,
       type: DataTypes.INTEGER,
     },
     comment: {
@@ -48,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
     },
     is_ordered: {
-      defaultValue: 'false',
+      defaultValue: false,
       type: DataTypes.BOOLEAN,
     },
     createdAt: {
@@ -62,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Order',
-    tableName: 'orders',
+    tableName: 'Orders',
   });
   return Order;
 };

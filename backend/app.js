@@ -12,8 +12,9 @@ const PORT = process.env.PORT ?? 4000;
 expressConfig(app);
 
 // Подлючаем роутеры app.use(...)
-app.use('/', apiRouter);
 app.use('/auth', authRouter);
+app.use('/api', apiRouter);
+
 
 app.listen(PORT, async () => {
   console.log(`<<< Server started on port ${PORT} >>>`);

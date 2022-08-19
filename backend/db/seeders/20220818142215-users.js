@@ -9,7 +9,7 @@ module.exports = {
       password: await bcrypt.hash('admin', saltRounds),
       name: 'admin',
       phone: 9998887766,
-      is_admin: 'true',
+      is_admin: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -17,7 +17,7 @@ module.exports = {
       password: await bcrypt.hash('123', saltRounds),
       name: 'kto-to',
       phone: 8887776655,
-      is_admin: 'false',
+      is_admin: false,
       createdAt: new Date(),
       updatedAt: new Date(),
     }];

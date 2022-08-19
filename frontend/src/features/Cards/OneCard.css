@@ -6,8 +6,8 @@
 
 .modalbtn {
   position: absolute !important;
-  bottom: 180px !important;
-  left: 85% !important
+  bottom: 35%!important;
+  left: 85% !important;
 }
 
 .onecard {
@@ -17,12 +17,10 @@
 }
 
 .imageroll {
-  height: 200px;
   width: 100%
 }
 
 .imagemodal {
-  height: 250px;
   width: 100%
 }
 
@@ -33,6 +31,7 @@
 .titlecard {
   margin-left: 23px !important;
   margin-right: 23px !important;
+  white-space: nowrap;
 }
 
 .typeroll {
@@ -42,7 +41,6 @@
 .modalcard {
   position: fixed !important;
   /* bottom: 130px !important; */
-  height: 30em !important;
   width: 30em !important;
   border-radius: 5px !important;
   top: 50% !important;
@@ -55,6 +53,19 @@
 .icon {
   height: 28px !important;
   width: 28px !important;
+  position: absolute;
+  top: 0px;
+  left: 86%;
+}
+
+.icon_2 {
+  left: 77%!important;
+}
+
+.card__extras {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 }
 
 .maindivmap {
@@ -62,4 +73,12 @@
   margin-left: auto;
   margin-right: auto;
   width: 80vw;
+  margin-top: 42px;
+}
+
+.card-content_modal {
+  border-radius: 0 0 2px 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

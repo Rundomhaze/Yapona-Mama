@@ -1,6 +1,24 @@
-.allcomp{
-  display: block;
+.allcomp {
+  display: flex;
+  width: 85%;
+  gap: 92px;
   margin-left: auto;
   margin-right: auto;
-  width: 80vw;
+  flex-wrap: wrap;
+  margin-top: 50px;
 }
+
+.iconfood {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+

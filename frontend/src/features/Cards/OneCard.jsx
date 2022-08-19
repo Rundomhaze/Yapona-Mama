@@ -9,8 +9,10 @@ function Onecard({ roll, spicy, vegan }) {
       <div className="card onecard" onClick={() => setOpen((prev) => !prev)}>
         <div className="">
           <img src={roll.photo} alt="" className="imageroll" alt="" />
-          {roll.is_vegan && <img src={vegan} alt="" className="icon" />}
-          {roll.is_spicy && <img src={spicy} alt="" className="icon" />}
+          <div className='card__extras'>
+            {roll.is_vegan && <img src={vegan} alt="" className="icon" />}
+            {roll.is_spicy && <img src={spicy} alt="" className="icon icon_2" />}
+          </div>
           <div className="redbtn">
             <a className="btn-floating btn-small waves-effect waves-light blue "><i className="material-icons">add</i></a>
           </div>
@@ -31,4 +33,3 @@ function Onecard({ roll, spicy, vegan }) {
   );
 }
 export default Onecard;
-

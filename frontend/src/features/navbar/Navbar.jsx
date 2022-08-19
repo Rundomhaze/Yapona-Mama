@@ -56,7 +56,6 @@ function Navbar() {
           </div>
         </nav>
 
-
         <ul className="sidenav" id="mobile-demo">
           <li><a href="/">Меню</a></li>
           <li><a href="/">Акции</a></li>
@@ -78,7 +77,6 @@ function Navbar() {
           </ul>
         </div>
       </nav>
-
       <Outlet />
       <Reg
         isOpen={regaModal}

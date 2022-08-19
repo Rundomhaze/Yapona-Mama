@@ -38,14 +38,29 @@ authRouter.post('/registration', async (req, res) => {
   res.json({id: user.id, name: user.name});
 })
 
+// Login
+authRouter.post('/login', async(req, res) => {
+  const {phone, password} = req.body;
+  const existingUser = await User.findOne({ where: { phone } });
+
+  // проверяем, что такой пользователь есть в БД и пароли совпадают
+  if (existingUser && (await bcrypt.compare(password, existingUser.password))) {
+  // кладём id нового пользователя в хранилище сессии (логиним пользователя)
+    req.session.userId = existingUser.id;
+    req.session.user = existingUser;
+    res.json({ id: existingUser.id, name: existingUser.name });
+  } else {
+    res.status(401).json({ error: 'Такого пользователя нет либо пароли не совпадают' });
+  }
+})
+
 // Logout
 authRouter.post('/logout', (req, res) => {
   req.session.destroy(() => {
+    res.clearCookie('user_sid');
     res.json({});
   });
 });
-
-
 
 
 module.exports = authRouter;

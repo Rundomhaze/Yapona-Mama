@@ -8,7 +8,7 @@ function Onecard({ roll, spicy, vegan }) {
     <div className="col s4 ">
       <div className="card onecard" onClick={() => setOpen((prev) => !prev)}>
         <div className="">
-          <img src={roll.photo} alt="" className="imageroll" alt="" />
+          <img src={roll.photo} alt="" className="imageroll" />
           {roll.is_vegan && <img src={vegan} alt="" className="icon" />}
           {roll.is_spicy && <img src={spicy} alt="" className="icon" />}
           <div className="redbtn">

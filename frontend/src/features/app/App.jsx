@@ -1,4 +1,3 @@
-import Auth from '../auth/Auth';
 import Listmenu from '../Cards/ListMenu';
 import React, { useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
@@ -25,7 +24,6 @@ function App() {
     <Routes>
       <Route element={<Navbar />}>
         <Route path="/" element={<MainComponent />} />
-        <Route path="/auth" element={<Auth />} />
         <Route path="/menu/roll" element={<Listmenu />} />
 
       </Route>

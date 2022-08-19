@@ -20,9 +20,27 @@
 }
 
 .titlecard {
-  margin-left: 23px !important; 
+  margin-left: 23px !important;
   margin-right: 23px !important;
 }
-.typeroll{
+
+.typeroll {
   font-size: 8px;
+}
+
+.modalcard {
+  position: fixed !important;
+  /* bottom: 130px !important; */
+  height: 450px !important;
+  width: 350px !important;
+  border-radius: 5px !important;
+  top:50% !important;
+  left:50% !important;
+  z-index:60 !important; 
+  margin-top: -100px !important; 
+  margin-left: -100px !important; 
+}
+.icon{
+  height: 28px !important;
+  width: 28px !important;
 }

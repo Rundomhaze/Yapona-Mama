@@ -1,15 +1,16 @@
 import React from 'react';
 import './OneCard.css';
+import Modal from './Modal.jsx';
 
 function Onecard({ roll, spicy, vegan }) {
-
+  const [open, setOpen] = React.useState(false);
   return (
-    <div className="col s4 ">
+    <div className="col s4 " onClick={() => setOpen((prev) => !prev)}>
       <div className="card onecard">
         <div className="">
           <img src={roll.image} alt="" className="imageroll" alt="" />
-          {roll.isvegan && <img src={vegan} alt="" />}
-          {roll.isspicy && <img src={spicy} alt="" />}
+          {roll.isvegan && <img src={vegan} alt="" className="icon" />}
+          {roll.isspicy && <img src={spicy} alt="" className="icon" />}
           <div className="redbtn">
             <a className="btn-floating btn-small waves-effect waves-light blue "><i className="material-icons">add</i></a>
           </div>
@@ -21,6 +22,10 @@ function Onecard({ roll, spicy, vegan }) {
           <span className="typeroll"> Вид : {roll.type} </span>
         </div>
       </div>
+      {open
+        && (
+          <Modal roll={roll} spicy={spicy} vegan={vegan} />
+        )}
     </div>
   );
 }

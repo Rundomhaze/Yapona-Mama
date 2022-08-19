@@ -1,14 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import { Outlet, useNavigate, Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 import './Navbar.css';
+import Reg from "../auth/rega/Reg";
 
 function Navbar() {
+  const [modal, setModal] = useState(false);
   return (
     <>
-      {/* <Link to="/profile">Личный кабинет</Link> */}
-      {/* <button type="button" onClick={() => navigate('/profile')}>
-        Личный кабинет
-      </button> */}
       <div className="divnavbar">
         <nav>
           <div className="nav-wrapper sticky-nav">
@@ -16,7 +15,8 @@ function Navbar() {
             <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
               <li><a href="/">Меню</a></li>
-              <li><Link to="/auth">Войти</Link></li>
+              {/* <li><Link to="/registration">Зарегистрироваться</Link></li> */}
+              <li onClick={()=>setModal(true)}>Зарегистрироваться</li>
               <li><a href="/">Акции</a></li>
               <li><a href="/">Корзина</a></li>
               <li><a href="/">Доставка</a></li>
@@ -41,8 +41,18 @@ function Navbar() {
         </div>
       </nav>
       <Outlet />
+      <Reg 
+        isOpen={modal}
+        closeModal={() => setModal(false)}
+        />
     </>
   )
 }
 
 export default Navbar;
+
+
+ {/* <Link to="/profile">Личный кабинет</Link> */}
+      {/* <button type="button" onClick={() => navigate('/profile')}>
+        Личный кабинет
+      </button> */}

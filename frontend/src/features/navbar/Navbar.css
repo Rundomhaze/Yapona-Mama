@@ -1,0 +1,18 @@
+nav .nav-wrapper {
+  background-color: rgb(102,102,102);
+}
+
+.divnavbar {
+  position: sticky; 
+  top: 0;
+}
+
+.divnavbar2 {
+  background-color: rgb(153,153,153);
+  display: flex;
+  justify-content: space-around;
+}
+
+.brand-logo{
+  margin-left: 30px
+}

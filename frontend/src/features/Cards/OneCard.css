@@ -1,0 +1,65 @@
+.redbtn {
+  position: absolute !important;
+  bottom: 80px !important;
+  left: 85% !important
+}
+
+.modalbtn {
+  position: absolute !important;
+  bottom: 180px !important;
+  left: 85% !important
+}
+
+.onecard {
+  position: relative !important;
+  height: 300px;
+  border-radius: 5px !important
+}
+
+.imageroll {
+  height: 200px;
+  width: 100%
+}
+
+.imagemodal {
+  height: 250px;
+  width: 100%
+}
+
+.desccard {
+  font-size: 11px;
+}
+
+.titlecard {
+  margin-left: 23px !important;
+  margin-right: 23px !important;
+}
+
+.typeroll {
+  font-size: 8px;
+}
+
+.modalcard {
+  position: fixed !important;
+  /* bottom: 130px !important; */
+  height: 30em !important;
+  width: 30em !important;
+  border-radius: 5px !important;
+  top: 50% !important;
+  left: 50% !important;
+  z-index: 2 !important;
+  margin-top: -200px !important;
+  margin-left: -225px !important;
+}
+
+.icon {
+  height: 28px !important;
+  width: 28px !important;
+}
+
+.maindivmap {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80vw;
+}

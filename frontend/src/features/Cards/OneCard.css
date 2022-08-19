@@ -1,6 +1,12 @@
 .redbtn {
   position: absolute !important;
-  bottom: 130px !important;
+  bottom: 80px !important;
+  left: 85% !important
+}
+
+.modalbtn {
+  position: absolute !important;
+  bottom: 180px !important;
   left: 85% !important
 }
 
@@ -11,7 +17,12 @@
 }
 
 .imageroll {
-  height: 150px;
+  height: 200px;
+  width: 100%
+}
+
+.imagemodal {
+  height: 250px;
   width: 100%
 }
 
@@ -31,16 +42,24 @@
 .modalcard {
   position: fixed !important;
   /* bottom: 130px !important; */
-  height: 450px !important;
-  width: 350px !important;
+  height: 30em !important;
+  width: 30em !important;
   border-radius: 5px !important;
-  top:50% !important;
-  left:50% !important;
-  z-index:60 !important; 
-  margin-top: -100px !important; 
-  margin-left: -100px !important; 
+  top: 50% !important;
+  left: 50% !important;
+  z-index: 2 !important;
+  margin-top: -200px !important;
+  margin-left: -225px !important;
 }
-.icon{
+
+.icon {
   height: 28px !important;
   width: 28px !important;
+}
+
+.maindivmap {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80vw;
 }

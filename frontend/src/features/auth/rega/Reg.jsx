@@ -1,8 +1,29 @@
 import React, {useState} from "react";
 import { useDispatch } from 'react-redux';
 import './Reg.css';
+import regUserAC from '../../../redux/actionCreators/userAC';
 
 function Reg({isOpen, closeModal}) {
+  const dispatch = useDispatch();
+
+  function handleSubmitFormReg(e) {
+    e.preventDefault();
+    const body = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+      name: e.target.name.value,
+      phone: e.target.tel.value,
+    }
+
+    fetch('http://localhost:4000/auth/registration', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(body)
+    })
+      .then((result) => result.json())
+      .then((data) => dispatch(regUserAC(data)));
+  }
 
   return (
     <>
@@ -13,15 +34,15 @@ function Reg({isOpen, closeModal}) {
         <div className='modal_close' onClick={() => closeModal()}>&times;</div>
 
 
-        <form >
+        <form onSubmit={handleSubmitFormReg}>
         <h5 className='title'>Регистрация</h5>
 
-          <input name='input' type="text" placeholder="введите имя" className='modal_input' />
-          <input name='input' type="email" placeholder="email" className='modal_input' />
-          <input name='input' type="tel" placeholder="телефон"  className='modal_input' />
-          <input name='input' type="password" placeholder="пароль" 
+          <input name='name' type="text" placeholder="введите имя" className='modal_input' />
+          <input name='email' type="email" placeholder="email" className='modal_input' />
+          <input name='tel' type="tel" placeholder="телефон"  className='modal_input' />
+          <input name='password' type="password" placeholder="пароль" 
           className='modal_input' />
-          <input name='input' type="password" placeholder="повторите пароль" 
+          <input name='passwordRepeat' type="password" placeholder="повторите пароль" 
           className='modal_input' />
 
           <button className='btn modal_button' >Отправить</button>

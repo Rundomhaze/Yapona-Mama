@@ -1,11 +1,33 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import './Navbar.css';
 import Reg from "../auth/rega/Reg";
+import Login from "../auth/loga/Login";
+import logoutAC from "../../redux/actionCreators/logoutAC";
 
 function Navbar() {
-  const [modal, setModal] = useState(false);
+  const [regaModal, setRegaModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
+  const { user } = useSelector((state) => state.user);
+  const userName = useSelector((state) => state.user.user.name);
+  const dispatch = useDispatch();
+ 
+
+  function handleLogout() {
+    const body = {
+      userId: user.id
+    };
+    fetch('http://localhost:4000/auth/logout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(body)
+    })
+      .then((result) => result.json())
+      .then((data) => dispatch(logoutAC(data)))
+  }
+
   return (
     <>
       <div className="divnavbar">
@@ -14,15 +36,26 @@ function Navbar() {
             <a href="/" className="brand-logo">Logo</a>
             <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
+              {user && !user.id ? (
+                <>
+                  <li><a onClick={() => setLoginModal(true)}>Войти</a></li>
+                  <li><a onClick={() => setRegaModal(true)}>Зарегистрироваться</a></li>
+                </>
+              ) : (
+                <>
+                  <li><a onClick={handleLogout}>Выйти</a></li>
+                  <li><a href="/">Личный кабинет</a></li>
+                </>
+              )}
+
               <li><a href="/">Меню</a></li>
-              {/* <li><Link to="/registration">Зарегистрироваться</Link></li> */}
-              <li onClick={()=>setModal(true)}>Зарегистрироваться</li>
               <li><a href="/">Акции</a></li>
               <li><a href="/">Корзина</a></li>
               <li><a href="/">Доставка</a></li>
             </ul>
           </div>
         </nav>
+
 
         <ul className="sidenav" id="mobile-demo">
           <li><a href="/">Меню</a></li>
@@ -36,23 +69,27 @@ function Navbar() {
           <ul id="nav-mobile" className="">
             <li><a>Работаем 11:00 - 04:00 </a></li>
             <li><a>Доставка еды от 45 минут</a></li>
-            <li><a href="collapsible.html">Личный кабинет</a></li>
+            <li><a>Личный кабинет</a></li>
+            {user && user.name ? (
+            <li><a>Здравствуйте, {userName} !</a></li>
+            ) : (
+            <li><a>Здравствуйте, гость!</a></li>
+            )}
           </ul>
         </div>
       </nav>
+
       <Outlet />
-      <Reg 
-        isOpen={modal}
-        closeModal={() => setModal(false)}
-        />
+      <Reg
+        isOpen={regaModal}
+        closeModal={() => setRegaModal(false)}
+      />
+      <Login
+        isOpen={loginModal}
+        closeModal={() => setLoginModal(false)}
+      />
     </>
   )
 }
 
 export default Navbar;
-
-
- {/* <Link to="/profile">Личный кабинет</Link> */}
-      {/* <button type="button" onClick={() => navigate('/profile')}>
-        Личный кабинет
-      </button> */}

@@ -25,7 +25,6 @@ function App() {
       <Route element={<Navbar />}>
         <Route path="/" element={<MainComponent />} />
         <Route path="/menu/roll" element={<Listmenu />} />
-
       </Route>
     </Routes>
   );

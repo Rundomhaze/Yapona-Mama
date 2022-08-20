@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet, useNavigate, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import './Navbar.css';
 import Reg from "../auth/rega/Reg";
@@ -10,7 +10,6 @@ function Navbar() {
   const [regaModal, setRegaModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const { user } = useSelector((state) => state.user);
-  const userName = useSelector((state) => state.user.user.name);
   const dispatch = useDispatch();
  
 
@@ -38,8 +37,14 @@ function Navbar() {
             <ul className="right hide-on-med-and-down">
               {user && !user.id ? (
                 <>
-                  <li><a onClick={() => setLoginModal(true)}>Войти</a></li>
-                  <li><a onClick={() => setRegaModal(true)}>Зарегистрироваться</a></li>
+                  <li><a onClick={() => {
+                    setRegaModal(false)
+                    setLoginModal(true)
+                    }}>Войти</a></li>
+                  <li><a onClick={() => {
+                    setLoginModal(false)
+                    setRegaModal(true)
+                    }}>Зарегистрироваться</a></li>
                 </>
               ) : (
                 <>
@@ -70,7 +75,7 @@ function Navbar() {
             <li><a>Доставка еды от 45 минут</a></li>
             <li><a>Личный кабинет</a></li>
             {user && user.name ? (
-            <li><a>Здравствуйте, {userName} !</a></li>
+            <li><a>Здравствуйте, {user.name} !</a></li>
             ) : (
             <li><a>Здравствуйте, гость!</a></li>
             )}

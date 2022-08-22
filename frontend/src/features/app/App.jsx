@@ -1,9 +1,9 @@
-import Listmenu from '../cards/ListMenu';
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
+import Listmenu from '../Cards/ListMenu';
 import regUserAC from '../../redux/actionCreators/userAC';
-import Navbar from "../navbar/Navbar";
+import Navbar from '../navbar/Navbar';
 import MainComponent from '../main/MainComponent';
 import Delivery from '../delivery/Delivery';
 import Sale from '../sale/Sale';
@@ -17,9 +17,9 @@ function App() {
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' }
     })
-    .then((result) => result.json())
-    .then((data) => dispatch(regUserAC(data)))
-  }, [dispatch])
+      .then((result) => result.json())
+      .then((data) => dispatch(regUserAC(data)));
+  }, [dispatch]);
 
   return (
     <Routes>

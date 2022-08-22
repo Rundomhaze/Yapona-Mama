@@ -1,5 +1,5 @@
 import React from 'react';
-import Listmenu from '../Cards/ListMenu';
+import Listmenu from '../cards/ListMenu';
 import './MainComp.css';
 import { Link, useNavigate } from 'react-router-dom';
 import sushi from '../../иконки/icons8-суши-100.png';

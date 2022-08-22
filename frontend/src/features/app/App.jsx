@@ -1,12 +1,10 @@
-import Auth from '../auth/Auth';
-import Listmenu from '../Cards/ListMenu';
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
+import Listmenu from '../Cards/ListMenu';
 import regUserAC from '../../redux/actionCreators/userAC';
-import Navbar from "../navbar/Navbar";
+import Navbar from '../navbar/Navbar';
 import MainComponent from '../main/MainComponent';
-
 
 function App() {
   const dispatch = useDispatch();
@@ -17,15 +15,14 @@ function App() {
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' }
     })
-    .then((result) => result.json())
-    .then((data) => dispatch(regUserAC(data)))
-  }, [dispatch])
+      .then((result) => result.json())
+      .then((data) => dispatch(regUserAC(data)));
+  }, [dispatch]);
 
   return (
     <Routes>
       <Route element={<Navbar />}>
         <Route path="/" element={<MainComponent />} />
-        <Route path="/auth" element={<Auth />} />
         <Route path="/menu/roll" element={<Listmenu />} />
 
       </Route>

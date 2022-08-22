@@ -11,7 +11,6 @@ foodLoadRouter.get('/load', async (req, res) => {
       },
       include: [{ model: Subtype }],
     });
-    // console.log(allCards);
     res.json(allCards);
   } catch (err) {
     res.json(err.message);

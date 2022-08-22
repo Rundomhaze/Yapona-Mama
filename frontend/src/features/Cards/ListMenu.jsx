@@ -14,7 +14,6 @@ function Listmenu() {
         setFood(data);
       });
   }, []);
-  console.log('fr', allFood);
   ///
   ///
   ///
@@ -23,7 +22,7 @@ function Listmenu() {
     <div className="maindivmap">
       <div className="row">
         {allFood && allFood.map((roll) => (
-          <Onecard roll={roll} vegan={vegan} spicy={spicy} />
+          <Onecard key={roll.id} roll={roll} vegan={vegan} spicy={spicy} />
         ))}
       </div>
     </div>

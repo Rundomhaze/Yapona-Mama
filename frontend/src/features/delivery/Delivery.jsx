@@ -1,7 +1,13 @@
-import React from "react";
+import React, {useEffect} from "react";
 import './Delivery.css';
+import init from "../../redux/apimap";
 
 function Delivery() {
+
+  useEffect(() => {
+    window.ymaps.ready(init);
+  }, []);
+
   return (
     <>
       <div className="delivery">
@@ -28,6 +34,12 @@ function Delivery() {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="apimap">
+        <h5>Зоны доставки</h5>
+        {/* <div id="map" className="map"></div> */}
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aae40869580c261bd0df5191ffd05cc4398a5b5b4ef8a3091f07fc7cbf53be02d&amp;source=constructor" width="1280" height="642" frameBorder="0"></iframe>
       </div>
     </>
   );

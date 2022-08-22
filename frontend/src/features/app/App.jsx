@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import regUserAC from '../../redux/actionCreators/userAC';
 import Navbar from "../navbar/Navbar";
 import MainComponent from '../main/MainComponent';
+import Delivery from '../delivery/Delivery';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <Route element={<Navbar />}>
         <Route path="/" element={<MainComponent />} />
         <Route path="/menu/roll" element={<Listmenu />} />
+        <Route path="/delivery" element={<Delivery />} />
       </Route>
     </Routes>
   );

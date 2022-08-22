@@ -56,7 +56,7 @@ function Navbar() {
               <li><a href="/">Меню</a></li>
               <li><a href="/">Акции</a></li>
               <li><a href="/">Корзина</a></li>
-              <li><a href="/">Доставка</a></li>
+              <li><a href="/delivery">Доставка</a></li>
             </ul>
           </div>
         </nav>
@@ -65,7 +65,7 @@ function Navbar() {
           <li><a href="/">Меню</a></li>
           <li><a href="/">Акции</a></li>
           <li><a href="/">Корзина</a></li>
-          <li><a href="/">Доставка</a></li>
+          <li><a href="/delivery">Доставка</a></li>
         </ul>
       </div>
       <nav>

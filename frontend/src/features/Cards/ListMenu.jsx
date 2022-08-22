@@ -7,6 +7,7 @@ import vegan from '../../роллы/icons8-брокколи-50.png';
 function Listmenu() {
   const [allFood, setFood] = useState([]);
 
+
   useEffect(() => {
     fetch('/api/load', { method: 'GET' })
       .then((result) => result.json())
@@ -19,7 +20,7 @@ function Listmenu() {
   ///
   ///
   return (
-    <div className="maindivmap">
+    <div className="maindivmap" >
       <div className="row">
         {allFood && allFood.map((roll) => (
           <Onecard key={roll.id} roll={roll} vegan={vegan} spicy={spicy} />

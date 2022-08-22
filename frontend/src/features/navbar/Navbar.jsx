@@ -97,3 +97,7 @@ function Navbar() {
 }
 
 export default Navbar;
+
+
+import one from '../../баннеры/banner-1.jpg';
+import two from '../../баннеры/fad04bceacc7e4432c96ae6056cc8311.png';

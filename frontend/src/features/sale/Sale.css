@@ -1,0 +1,38 @@
+.sale{
+  margin-top: 7%;
+}
+
+h3{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+
+.saleDiv{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 140%;
+}
+
+.saleImg {
+  border-radius: 5%;
+}
+
+.filterImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  height: 300px;
+  overflow: hidden;
+  margin: 2%;
+}
+
+.filterImg img{
+  width: initial;
+  height: 100%;
+}
+
+

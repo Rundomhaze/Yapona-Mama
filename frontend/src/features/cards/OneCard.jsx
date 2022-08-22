@@ -9,7 +9,7 @@ function Onecard({ roll, spicy, vegan }) {
     <div className="col s4 onecard">
       <div className="card ">
         <div className="">
-          <img src={roll.photo} alt="" className="imageroll" alt="" onClick={() => setOpen(true)} />
+          <img src={roll.photo} alt="photo" className="imageroll" onClick={() => setOpen(true)} />
           <div className="card__extras">
             {roll.is_vegan && <img src={vegan} alt="" className="icon" />}
             {roll.is_spicy && <img src={spicy} alt="" className="icon icon_2" />}

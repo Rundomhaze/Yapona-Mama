@@ -1,0 +1,48 @@
+body page-footer {
+  display: flex !important;
+  min-height: 100vh !important;
+  flex-direction: column !important;
+}
+
+main page-footer{
+  flex: 1 0 auto !important;
+}
+
+.page-footer {
+  background-color: rgb(204,204,204) !important;
+}
+
+.img-logo-foot{
+  width: 8em;
+  height: 8em;
+  border-radius: 50%;
+}
+
+.deliveryClub {
+  width: 100%;
+  height: 100%;
+}
+
+.adress{
+  font-size: 96% !important;
+}
+
+.logo-block{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.logo-text{
+  font-size: 180%
+}
+
+.logo-text-delivery{
+  font-size: 120%;
+}
+
+.footer-copyright{
+  background-color: rgb(153,153,153) !important;
+}
+

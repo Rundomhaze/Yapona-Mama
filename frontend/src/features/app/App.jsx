@@ -1,4 +1,4 @@
-import Listmenu from '../Cards/ListMenu';
+import Listmenu from '../cards/ListMenu';
 import React, { useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from "react-redux";
@@ -6,7 +6,7 @@ import regUserAC from '../../redux/actionCreators/userAC';
 import Navbar from "../navbar/Navbar";
 import MainComponent from '../main/MainComponent';
 import Delivery from '../delivery/Delivery';
-
+import Sale from '../sale/Sale';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ function App() {
         <Route path="/" element={<MainComponent />} />
         <Route path="/menu/roll" element={<Listmenu />} />
         <Route path="/delivery" element={<Delivery />} />
+        <Route path="/sale" element={<Sale />} />
       </Route>
     </Routes>
   );

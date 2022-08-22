@@ -5,6 +5,7 @@ import './Navbar.css';
 import Reg from "../auth/rega/Reg";
 import Login from "../auth/loga/Login";
 import logoutAC from "../../redux/actionCreators/logoutAC";
+import label from '../../роллы/label.jpeg';
 
 function Navbar() {
   const [regaModal, setRegaModal] = useState(false);
@@ -32,7 +33,7 @@ function Navbar() {
       <div className="divnavbar">
         <nav>
           <div className="nav-wrapper sticky-nav">
-            <a href="/" className="brand-logo">Logo</a>
+            <a href="/" className="brand-logo"><img src={label} className="img-logo"/></a>
             <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
               {user && !user.id ? (
@@ -54,7 +55,7 @@ function Navbar() {
               )}
 
               <li><a href="/">Меню</a></li>
-              <li><a href="/">Акции</a></li>
+              <li><a href="/sale">Акции</a></li>
               <li><a href="/">Корзина</a></li>
               <li><a href="/delivery">Доставка</a></li>
             </ul>
@@ -63,7 +64,7 @@ function Navbar() {
 
         <ul className="sidenav" id="mobile-demo">
           <li><a href="/">Меню</a></li>
-          <li><a href="/">Акции</a></li>
+          <li><a href="/sale">Акции</a></li>
           <li><a href="/">Корзина</a></li>
           <li><a href="/delivery">Доставка</a></li>
         </ul>

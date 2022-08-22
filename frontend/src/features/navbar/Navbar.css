@@ -1,5 +1,6 @@
 nav .nav-wrapper {
   background-color: rgb(102,102,102);
+  font-size: 120%;
 }
 
 .divnavbar {
@@ -15,7 +16,17 @@ nav .nav-wrapper {
 }
 
 .brand-logo{
-  margin-left: 30px
+  margin-left: 3%
+}
+
+.right {
+  font-size: 120% !important;
+}
+
+.img-logo{
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
 }
 
 

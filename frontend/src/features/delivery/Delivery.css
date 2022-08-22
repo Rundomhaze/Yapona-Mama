@@ -12,3 +12,17 @@ h3{
   padding: 3%;
   font-size: 130%;
 }
+
+.apimap {
+  display: flex;
+  border: solid rgb(214, 186, 186) 1px;
+  flex-direction: column;
+  align-content: space-between;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.map {
+  width: 80%;
+  height: 600px;
+}

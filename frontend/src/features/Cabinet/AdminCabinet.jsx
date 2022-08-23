@@ -85,6 +85,7 @@ function AdminCabinet() {
         <AdminCard el={el} key={el.id} />
       ))}
       </div>
+      <div className="upBtn"><a href="#">Наверх</a></div>
     </div>
   );
 }

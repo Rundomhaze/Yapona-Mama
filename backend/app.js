@@ -5,7 +5,7 @@ const expressConfig = require('./config/express');
 
 // Место под рекваер роутеров:
 const apiRouter = require('./routes/api/api.route');
-const foodLoadRouter = require('./routes/api/FoodLoad.api.route');
+const foodLoadRouter = require('./routes/api/foodLoad.api.route');
 const foodLoadAdminRouter = require('./routes/api/foodLoadAdmin.api.route');
 const authRouter = require('./routes/api/api.auth.route');
 const hitRouter = require('./routes/api/Hit.api.route');
@@ -20,6 +20,7 @@ app.use('/auth', authRouter);
 app.use('/api', apiRouter);
 app.use('/api', foodLoadRouter);
 app.use('/api', foodLoadAdminRouter);
+app.use('/api', hitRouter);
 
 
 app.listen(PORT, async () => {

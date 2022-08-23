@@ -1,5 +1,7 @@
 .allcomp {
   display: flex;
+  justify-content: center;
+  align-content: space-around;
   width: 85%;
   gap: 92px;
   margin-left: auto;
@@ -20,5 +22,9 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 9px;
+}
+
+.probel{
+  margin-top: 30%;
 }
 

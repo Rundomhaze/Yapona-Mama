@@ -5,11 +5,11 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
-      title: 'Запечённые роллы',
+      title: 'Жареные роллы',
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
-      title: 'Роллы со сливочным сыром',
+      title: 'Роллы-перевертыши',
       createdAt: new Date(),
       updatedAt: new Date(),
     }];

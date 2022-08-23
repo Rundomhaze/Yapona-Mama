@@ -22,8 +22,8 @@ function Listmenu() {
   return (
     <div className="maindivmap" >
       <div className="row">
-        {allFood && allFood.map((roll) => (
-          <Onecard key={roll.id} roll={roll} vegan={vegan} spicy={spicy} />
+        {allFood && allFood.map((onefood) => (
+          <Onecard key={onefood.id} onefood={onefood} vegan={vegan} spicy={spicy} />
         ))}
       </div>
     </div>

@@ -4,6 +4,3 @@ export const actionType = {
   EDIT_FOOD: 'EDIT_FOOD',
   FILTER_FOODS: 'FILTER_FOODS'
 };
-
-
-

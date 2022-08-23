@@ -1,10 +1,10 @@
-import actionType from '../actionTypes/adminAT';
+import { actionType } from '../actionTypes/adminAT';
 
-const action = {
+const actionCreator = {
   loadFoods: (data) => ({ type: actionType.FOOD_LOADED, payload: data }),
-  addFood: (task) => ({ type: actionType.ADD_FOOD, payload: task }),
+  addFood: (objFood) => ({ type: actionType.ADD_FOOD, payload: objFood }),
   editFood: (onefood) => ({ type: actionType.EDIT_FOOD, payload: onefood }),
   // filterTasks: (status) => ({ type: actionType.FILTER_FOODS, payload: status })
 };
 
-export default action;
+export default actionCreator;

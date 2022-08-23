@@ -12,7 +12,7 @@ import sweet from '../../иконки/icons8-десерт-100.png';
 import water from '../../иконки/icons8-кофе-с-собой-100.png';
 import Carusel from '../../features/carusel/Carusel';
 import Hits from './Hits';
-import CardList from '../cards/CardList'
+import CardList from '../Cards/CardList'
 
 
 function MainComponent() {

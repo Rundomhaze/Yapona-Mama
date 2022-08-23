@@ -1,7 +1,7 @@
 const hitRouter = require('express').Router();
 
 const {
-  Food, Subtype, Type
+  Food, Subtype, Type,
 } = require('../../db/models');
 
 hitRouter.get('/hits', async (req, res) => {
@@ -9,15 +9,14 @@ hitRouter.get('/hits', async (req, res) => {
     const allHits = await Food.findAll({
       raw: true,
       where: {
-        is_hit: true
+        is_hit: true,
       },
       include: [{ model: Subtype }, { model: Type }],
-    })
+    });
     res.json(allHits);
   } catch (err) {
     res.json(err.message);
   }
-})
+});
 
-
-module.exports = hitRouter
+module.exports = hitRouter;

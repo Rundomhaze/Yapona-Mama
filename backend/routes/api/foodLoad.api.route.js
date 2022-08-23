@@ -4,17 +4,16 @@ const {
   Food, Subtype, Type, FoodsIngredient, Ingredient,
 } = require('../../db/models');
 
-foodLoadRouter.get('/load', async (req, res) => {
+foodLoadRouter.get('/load/:id', async (req, res) => {
   try {
     const allCards = await Food.findAll({
       raw: true,
-      // where: {
-      //   type_id: 1,
-      // },
+      where: {
+        type_id: req.params.id,
+      },
       include: [{ model: Subtype }, { model: Type }],
     });
     res.json(allCards);
-    console.log(allCards);
   } catch (err) {
     res.json(err.message);
   }

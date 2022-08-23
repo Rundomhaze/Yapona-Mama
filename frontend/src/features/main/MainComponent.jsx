@@ -73,8 +73,8 @@ function MainComponent() {
       </div>
 
       {allFood && <CardList allFood={allFood} />}
-
       <Hits />
+      <div className='upBtn'><a href='#'>Наверх</a></div>
     </>
   );
 }

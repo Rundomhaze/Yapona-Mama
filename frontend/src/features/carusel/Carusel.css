@@ -1,6 +1,6 @@
 .carousel .carousel-item {
   width: 1905px !important;
-  height: 400px;
+  height: 400px !important;
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;

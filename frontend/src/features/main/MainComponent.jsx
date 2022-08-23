@@ -1,7 +1,6 @@
 import React from 'react';
-import Listmenu from '../cards/ListMenu';
 import './MainComp.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import sushi from '../../иконки/icons8-суши-100.png';
 import soup from '../../иконки/icons8-тарелка-супа-100.png';
 import zakus from '../../иконки/icons8-куриные-наггетсы-100.png';
@@ -10,7 +9,7 @@ import wok from '../../иконки/icons8-wok-100.png';
 import sous from '../../иконки/icons8-соусы-100.png';
 import sweet from '../../иконки/icons8-десерт-100.png';
 import water from '../../иконки/icons8-кофе-с-собой-100.png';
-import Carusel from '../carusel/Carusel';
+import Carusel from '../../features/carusel/Carusel';
 
 function MainComponent() {
   const navigate = useNavigate();

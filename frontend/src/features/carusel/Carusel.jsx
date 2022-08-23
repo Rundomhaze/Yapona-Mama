@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import Carousel from 'react-bootstrap/Carousel';
-// import one from '../../баннеры/banner-1.jpg';
-// import two from '../../баннеры/fad04bceacc7e4432c96ae6056cc8311.png';
-import oneB from '../../баннеры/new/baner-1.jpeg';
-import twoB from '../../баннеры/new/baner-2.jpeg';
-import threeB from '../../баннеры/new/baner-3.jpeg';
-import fourB from '../../баннеры/new/baner-4.jpeg';
 import './Carusel.css';
+
+import oneBan from '../../баннеры/1-ban.jpg';
+import twoBan from '../../баннеры/2-ban.jpg';
+
 
 function Carusel() {
   const [index, setIndex] = useState(0);
@@ -21,7 +19,7 @@ function Carusel() {
         <div>
           <img
             className="carusImg d-block w-100"
-            src={oneB}
+            src={oneBan}
             alt="First slide"
           />
         </div>
@@ -32,31 +30,11 @@ function Carusel() {
         <div>
           <img
             className="carusImg d-block w-100"
-            src={twoB}
+            src={twoBan}
             alt="Second slide"
           />
         </div>
 
-      </Carousel.Item>
-
-      <Carousel.Item>
-        <div>
-          <img
-            className="carusImg d-block w-100"
-            src={threeB}
-            alt="Second slide"
-          />
-        </div>
-      </Carousel.Item>
-
-      <Carousel.Item>
-        <div>
-          <img
-            className="carusImg d-block w-100"
-            src={fourB}
-            alt="Second slide"
-          />
-        </div>
       </Carousel.Item>
 
     </Carousel>

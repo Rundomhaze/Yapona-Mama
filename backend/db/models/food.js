@@ -59,6 +59,9 @@ module.exports = (sequelize, DataTypes) => {
     is_spicy: {
       type: DataTypes.BOOLEAN,
     },
+    is_hit: {
+      type: DataTypes.BOOLEAN,
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,

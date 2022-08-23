@@ -1,5 +1,9 @@
 .allcomp {
   display: flex;
+  justify-content: center;
+  align-content: space-around;
+  margin-bottom: 4%;
+  z-index: 3;
   width: 85%;
   gap: 92px;
   margin-left: auto;
@@ -21,4 +25,14 @@
   align-items: flex-start;
   gap: 9px;
 }
+
+.upBtn *{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  font-size: 20px;
+  color: black;
+}
+
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, Box } from '@mui/system';
@@ -68,7 +68,7 @@ export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy })
           <div className="flexDiv">
             <div className='close'><a onClick={() => setOpen(false)}>❌</a></div>
             <div className="flex">
-              <img src={roll.photo} alt="" className="materialboxed" alt="" />
+              <img src={roll.photo} alt="" className="materialboxed" />
             </div>
             <div className="modalbtn">
               <div>

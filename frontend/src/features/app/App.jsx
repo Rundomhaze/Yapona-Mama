@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import Listmenu from '../Cards/ListMenu';
+import Listmenu from '../cards/ListMenu';
 import regUserAC from '../../redux/actionCreators/userAC';
 import Navbar from '../navbar/Navbar';
+import Footer from '../footer/Footer';
 import MainComponent from '../main/MainComponent';
 import Delivery from '../delivery/Delivery';
 import Sale from '../sale/Sale';
@@ -23,15 +24,19 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Routes>
-      <Route element={<Navbar />}>
-        <Route path="/" element={<MainComponent />} />
-        <Route path="/menu/roll" element={<Listmenu />} />
-        <Route path="/delivery" element={<Delivery />} />
-        <Route path="/sale" element={<Sale />} />
-        <Route path="/admin" element={<AdminCabinet />} />
-      </Route>
-    </Routes>
+
+    <>
+      <Routes>
+        <Route element={<Navbar />}>
+          <Route path="/" element={<MainComponent />} />
+          <Route path="/menu/roll" element={<Listmenu />} />
+          <Route path="/delivery" element={<Delivery />} />
+          <Route path="/sale" element={<Sale />} />
+          <Route path="/admin" element={<AdminCabinet />} />
+        </Route>
+      </Routes>
+      <Footer />
+    </>
   );
 }
 

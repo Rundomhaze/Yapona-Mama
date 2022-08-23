@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import Listmenu from '../cards/ListMenu';
 import regUserAC from '../../redux/actionCreators/userAC';
 import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
@@ -29,7 +28,6 @@ function App() {
       <Routes>
         <Route element={<Navbar />}>
           <Route path="/" element={<MainComponent />} />
-          <Route path="/menu/roll" element={<Listmenu />} />
           <Route path="/delivery" element={<Delivery />} />
           <Route path="/sale" element={<Sale />} />
           <Route path="/admin" element={<AdminCabinet />} />

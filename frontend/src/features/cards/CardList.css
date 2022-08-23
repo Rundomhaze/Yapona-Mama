@@ -1,0 +1,4 @@
+.rollsrow {
+  display: flex;
+  flex-direction: column;
+}

@@ -3,15 +3,14 @@ import './OneCard.css';
 import ModalUnstyledDemo from './Modal';
 
 function Onecard({ onefood, spicy, vegan }) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
+
   return (
     <div className="col s4 onecard">
       <div className="card ">
         <div className="">
           <img src={onefood.photo} alt="photo" className="imageroll"  onClick={() => setOpen(true)} />
-
-
 
           <div className="card__extras">
             {onefood.is_vegan && <img src={vegan} alt="" className="icon" />}

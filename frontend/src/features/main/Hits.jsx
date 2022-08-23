@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Onecard from '../cards/OneCard';
+import './Hits.css'
 import spicy from '../../роллы/icons8-перец-чили-50.png';
 import vegan from '../../роллы/icons8-брокколи-50.png';
 
@@ -14,7 +15,8 @@ function Hits() {
 
 
   return (
-    <div className="maindivmap" >
+    <div className="maindivmap hits" >
+      <h3>Хиты продаж:</h3>
       <div className="row">
         {allHits && allHits.map((oneHit) => (
           <Onecard key={oneHit.id} onefood={oneHit} vegan={vegan} spicy={spicy} />

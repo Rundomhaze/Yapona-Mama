@@ -10,6 +10,7 @@ import sous from '../../иконки/icons8-соусы-100.png';
 import sweet from '../../иконки/icons8-десерт-100.png';
 import water from '../../иконки/icons8-кофе-с-собой-100.png';
 import Carusel from '../../features/carusel/Carusel';
+import Hits from './Hits';
 
 function MainComponent() {
   const navigate = useNavigate();
@@ -58,7 +59,9 @@ function MainComponent() {
           НАПИТКИ
         </div>
       </div>
-      <div className='probel'></div>
+      
+      <h3>Хиты продаж:</h3>
+      <Hits />
     </>
   );
 }

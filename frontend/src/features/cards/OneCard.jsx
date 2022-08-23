@@ -9,7 +9,7 @@ function Onecard({ onefood, spicy, vegan }) {
     <div className="col s4 onecard">
       <div className="card ">
         <div className="">
-          <img src={onefood.photo} alt="photo" className="imageroll" alt="" onClick={() => setOpen(true)} />
+          <img src={onefood.photo} alt="photo" className="imageroll"  onClick={() => setOpen(true)} />
 
 
 

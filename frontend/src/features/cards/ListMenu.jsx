@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Onecard from './OneCard';
-import './OneCard.css';
 import spicy from '../../роллы/icons8-перец-чили-50.png';
 import vegan from '../../роллы/icons8-брокколи-50.png';
 

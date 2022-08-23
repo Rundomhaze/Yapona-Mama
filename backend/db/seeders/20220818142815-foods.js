@@ -37,6 +37,7 @@ module.exports = {
       subtype_id: 1, // классические
       is_vegan: false,
       is_spicy: false,
+      is_hit: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
@@ -182,6 +183,7 @@ module.exports = {
       subtype_id: 2, // жареные
       is_vegan: false,
       is_spicy: false,
+      is_hit: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -280,6 +282,7 @@ module.exports = {
       subtype_id: 2, // жареные
       is_vegan: false,
       is_spicy: false,
+      is_hit: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -435,6 +438,7 @@ module.exports = {
       subtype_id: 3, // Перевертыши
       is_vegan: false,
       is_spicy: false,
+      is_hit: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -477,6 +481,7 @@ module.exports = {
       subtype_id: 3, // Перевертыши
       is_vegan: false,
       is_spicy: false,
+      is_hit: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -491,6 +496,7 @@ module.exports = {
       subtype_id: 3, // Перевертыши
       is_vegan: false,
       is_spicy: false,
+      is_hit: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     },

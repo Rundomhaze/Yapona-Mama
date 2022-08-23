@@ -7,6 +7,7 @@ const expressConfig = require('./config/express');
 const apiRouter = require('./routes/api/api.route');
 const foodLoadRouter = require('./routes/api/FoodLoad.api.route');
 const authRouter = require('./routes/api/api.auth.route');
+const hitRouter = require('./routes/api/Hit.api.route');
 
 
 const app = express();
@@ -17,6 +18,7 @@ expressConfig(app);
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);
 app.use('/api', foodLoadRouter);
+app.use('/api', hitRouter);
 
 
 app.listen(PORT, async () => {

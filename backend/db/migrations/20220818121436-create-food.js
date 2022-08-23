@@ -45,6 +45,9 @@ module.exports = {
       is_spicy: {
         type: Sequelize.BOOLEAN,
       },
+      is_hit: {
+        type: Sequelize.BOOLEAN,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

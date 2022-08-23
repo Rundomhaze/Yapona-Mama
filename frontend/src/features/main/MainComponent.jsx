@@ -58,6 +58,7 @@ function MainComponent() {
           НАПИТКИ
         </div>
       </div>
+      <div className='probel'></div>
     </>
   );
 }

@@ -7,6 +7,7 @@ import Navbar from '../navbar/Navbar';
 import MainComponent from '../main/MainComponent';
 import Delivery from '../delivery/Delivery';
 import Sale from '../sale/Sale';
+import AdminCabinet from '../Cabinet/AdminCabinet';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function App() {
         <Route path="/menu/roll" element={<Listmenu />} />
         <Route path="/delivery" element={<Delivery />} />
         <Route path="/sale" element={<Sale />} />
+        <Route path="/admin" element={<AdminCabinet />} />
       </Route>
     </Routes>
   );

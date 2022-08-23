@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './Navbar.css';
-import Reg from "../auth/rega/Reg";
-import Login from "../auth/loga/Login";
-import logoutAC from "../../redux/actionCreators/logoutAC";
+import Reg from '../auth/rega/Reg';
+import Login from '../auth/loga/Login';
+import logoutAC from '../../redux/actionCreators/logoutAC';
 import label from '../../роллы/label.jpeg';
 
 function Navbar() {
   const [regaModal, setRegaModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
-  const { user } = useSelector((state) => state.user);
+  // const { user } = useSelector((state) => state.user); ///////  ИСКУССТВЕННО СОЗДАНЫЙ ЮЗЕР ДЛЯ УСЛОВНОГО РЕНДЕРИНГА
+  const user = { id: 1, name: 'admin', status: true };
   const dispatch = useDispatch();
- 
 
   function handleLogout() {
     const body = {
@@ -25,7 +25,7 @@ function Navbar() {
       body: JSON.stringify(body)
     })
       .then((result) => result.json())
-      .then((data) => dispatch(logoutAC(data)))
+      .then((data) => dispatch(logoutAC(data)));
   }
 
   return (
@@ -33,19 +33,30 @@ function Navbar() {
       <div className="divnavbar">
         <nav>
           <div className="nav-wrapper sticky-nav">
-            <a href="/" className="brand-logo"><img src={label} className="img-logo"/></a>
+            <a href="/" className="brand-logo"><img src={label} className="img-logo" /></a>
             <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
               {user && !user.id ? (
                 <>
                   <li><a onClick={() => {
-                    setRegaModal(false)
-                    setLoginModal(true)
-                    }}>Войти</a></li>
+                    setRegaModal(false);
+                    setLoginModal(true);
+                  }}
+                  >Войти
+                  </a>
+                  </li>
                   <li><a onClick={() => {
-                    setLoginModal(false)
-                    setRegaModal(true)
-                    }}>Зарегистрироваться</a></li>
+                    setLoginModal(false);
+                    setRegaModal(true);
+                  }}
+                  >Зарегистрироваться
+                  </a>
+                  </li>
+                </>
+              ) : user.status ? (
+                <>
+                  <li><a onClick={handleLogout}>Выйти</a></li>
+                  <li><a href="/admin">АДМИН КАБИНЕТ</a></li>
                 </>
               ) : (
                 <>
@@ -76,9 +87,9 @@ function Navbar() {
             <li><a>Доставка еды от 45 минут</a></li>
             <li><a>Личный кабинет</a></li>
             {user && user.name ? (
-            <li><a>Здравствуйте, {user.name} !</a></li>
+              <li><a>Здравствуйте, {user.name} !</a></li>
             ) : (
-            <li><a>Здравствуйте, гость!</a></li>
+              <li><a>Здравствуйте, гость!</a></li>
             )}
           </ul>
         </div>
@@ -93,7 +104,7 @@ function Navbar() {
         closeModal={() => setLoginModal(false)}
       />
     </>
-  )
+  );
 }
 
 export default Navbar;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './MainComp.css';
-
+import { useSelector } from 'react-redux';
 import rolls from '../../иконки/icons8-суши-100.png';
 import sushi from '../../иконки/icons8-суши-с-лососем-100.png'
 import soup from '../../иконки/icons8-тарелка-супа-100.png';
@@ -12,13 +12,19 @@ import sweet from '../../иконки/icons8-десерт-100.png';
 import water from '../../иконки/icons8-кофе-с-собой-100.png';
 import Carusel from '../../features/carusel/Carusel';
 import Hits from './Hits';
-import CardList from '../Cards/CardList'
+import CardList from '../Cards/CardList';
+import FilterFood from './FilterFood';
+
 
 
 function MainComponent() {
 
   const [allFood, setFood] = useState(null);
   const [id, setId] = useState(0)
+
+  const { filterFood } = useSelector((state) => state.filterFood)
+  console.log(filterFood);
+  
 
   useEffect(() => {
     if (id > 0) {
@@ -72,8 +78,16 @@ function MainComponent() {
         </div>
       </div>
 
+      <div className='checkIng'>
+        <FilterFood setFood={setFood} />
+      </div>
+
       {allFood && <CardList allFood={allFood} />}
+
+      {filterFood && filterFood.length > 0 ? <CardList allFood={filterFood} /> : null}
+
       <Hits />
+
       <div className='upBtn'><a href='#'>Наверх</a></div>
     </>
   );

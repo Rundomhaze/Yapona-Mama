@@ -10,8 +10,8 @@ import label from '../../роллы/label.jpeg';
 function Navbar() {
   const [regaModal, setRegaModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
-  // const { user } = useSelector((state) => state.user);
-  const user = { id: 1, name: 'admin', status: true };///////  ИСКУССТВЕННО СОЗДАНЫЙ ЮЗЕР ДЛЯ УСЛОВНОГО РЕНДЕРИНГА
+  const { user } = useSelector((state) => state.user);
+  // const user = { id: 1, name: 'admin', status: true };///////  ИСКУССТВЕННО СОЗДАНЫЙ ЮЗЕР ДЛЯ УСЛОВНОГО РЕНДЕРИНГА
   const dispatch = useDispatch();
  
   const navigate = useNavigate();

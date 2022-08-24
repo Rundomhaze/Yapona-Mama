@@ -1,0 +1,36 @@
+Form{
+  display: flex;
+  align-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
+.mb-3{
+  display: flex;
+  align-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-check-inline{
+  display: flex;
+  align-content: space-between;
+  margin: 5%;
+}
+
+.form-check-input{
+  width: 10px;
+  height: 10px;
+  position: relative !important;
+  opacity: 1 !important;
+  pointer-events:visible !important;
+}
+
+
+
+
+
+/* 
+<div class="form-check form-check-inline"><input name="group1" type="checkbox" id="inline-checkbox-1" class="form-check-input"><label title="" for="inline-checkbox-1" class="form-check-label">Угорь</label></div> */
+
+/* <input name="group1" type="checkbox" id="inline-checkbox-1" class="form-check-input"> */

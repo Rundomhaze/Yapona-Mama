@@ -35,4 +35,9 @@
   color: black;
 }
 
+.checkIng{
+  display: flex;
+  justify-content: space-around;
+}
+
 

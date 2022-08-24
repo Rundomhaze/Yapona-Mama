@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import Onecard from './OneCard';
 import './CardList.css'
 import spicy from '../../роллы/icons8-перец-чили-50.png';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './Navbar.css';
 import Reg from '../auth/rega/Reg';
@@ -13,6 +13,8 @@ function Navbar() {
   const { user } = useSelector((state) => state.user);
   // const user = { id: 1, name: 'admin', status: true };///////  ИСКУССТВЕННО СОЗДАНЫЙ ЮЗЕР ДЛЯ УСЛОВНОГО РЕНДЕРИНГА
   const dispatch = useDispatch();
+ 
+  const navigate = useNavigate();
 
   function handleLogout() {
     const body = {
@@ -67,7 +69,7 @@ function Navbar() {
 
               <li><a href="/">Меню</a></li>
               <li><a href="/sale">Акции</a></li>
-              <li><a href="/">Корзина</a></li>
+              <li><a onClick={() => navigate('/cart')}>Корзина</a></li>
               <li><a href="/delivery">Доставка</a></li>
             </ul>
           </div>
@@ -108,4 +110,3 @@ function Navbar() {
 }
 
 export default Navbar;
-

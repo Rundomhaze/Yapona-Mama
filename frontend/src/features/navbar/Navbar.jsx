@@ -11,6 +11,7 @@ function Navbar() {
   const [regaModal, setRegaModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const { user } = useSelector((state) => state.user);
+  // const user = { id: 1, name: 'admin', status: true };///////  ИСКУССТВЕННО СОЗДАНЫЙ ЮЗЕР ДЛЯ УСЛОВНОГО РЕНДЕРИНГА
   const dispatch = useDispatch();
  
   const navigate = useNavigate();
@@ -44,15 +45,20 @@ function Navbar() {
                     setLoginModal(true);
                   }}
                   >Войти
-                      </a>
+                  </a>
                   </li>
                   <li><a onClick={() => {
                     setLoginModal(false);
                     setRegaModal(true);
                   }}
                   >Зарегистрироваться
-                      </a>
+                  </a>
                   </li>
+                </>
+              ) : user.status ? (
+                <>
+                  <li><a onClick={handleLogout}>Выйти</a></li>
+                  <li><a href="/admin">АДМИН КАБИНЕТ</a></li>
                 </>
               ) : (
                 <>

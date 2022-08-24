@@ -1,0 +1,16 @@
+.carousel .carousel-item {
+  width: 1905px !important;
+  height: 400px !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+.active{
+  visibility: visible !important
+}
+
+.carusImg{
+  width: 100% !important;
+  height: 500px !important;
+}

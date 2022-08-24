@@ -1,15 +1,17 @@
 const foodLoadRouter = require('express').Router();
 
-const { Food, Subtype } = require('../../db/models');
+const {
+  Food, Subtype, Type, FoodsIngredient, Ingredient,
+} = require('../../db/models');
 
-foodLoadRouter.get('/load', async (req, res) => {
+foodLoadRouter.get('/load/:id', async (req, res) => {
   try {
     const allCards = await Food.findAll({
       raw: true,
       where: {
-        type_id: 1,
+        type_id: req.params.id,
       },
-      include: [{ model: Subtype }],
+      include: [{ model: Subtype }, { model: Type }],
     });
     res.json(allCards);
   } catch (err) {

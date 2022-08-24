@@ -1,0 +1,6 @@
+export const actionType = {
+  FOOD_LOADED: 'FOOD_LOADED',
+  ADD_FOOD: 'ADD_FOOD',
+  EDIT_FOOD: 'EDIT_FOOD',
+  FILTER_FOODS: 'FILTER_FOODS'
+};

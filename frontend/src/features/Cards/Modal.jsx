@@ -54,7 +54,6 @@ const style = (theme) => ({
 export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy }) {
 
   const handleClose = () => setOpen(false);
-
   const { foods, details } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -94,7 +93,9 @@ export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy })
       >
         <Box sx={style} className="modalcard">
           <div className="flexDiv">
+
             <div className="close"><a onClick={() => setOpen(false)}>❌</a></div>
+
             <div className="flex">
               <img src={roll.photo} alt="" className="materialboxed" />
             </div>
@@ -125,3 +126,4 @@ export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy })
     </div>
   );
 }
+

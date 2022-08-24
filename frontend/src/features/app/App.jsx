@@ -8,7 +8,9 @@ import MainComponent from '../main/MainComponent';
 import Delivery from '../delivery/Delivery';
 import Sale from '../sale/Sale';
 import AdminCabinet from '../Cabinet/AdminCabinet';
+import UserCabinet from '../Cabinet/UserCabinet';
 import Cart from '../cart/Cart';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +48,7 @@ function App() {
           <Route path="/delivery" element={<Delivery />} />
           <Route path="/sale" element={<Sale />} />
           <Route path="/admin" element={<AdminCabinet />} />
+          <Route path="/user_room" element={<UserCabinet />} />
           <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>

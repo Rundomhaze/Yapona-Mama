@@ -13,7 +13,7 @@ import Cart from '../cart/Cart';
 
 function App() {
   const dispatch = useDispatch();
-  const { foods, details } = useSelector((state) => state.cart);
+  const { id } = useSelector((state) => state.cart.details);
   const { user } = useSelector((state) => state.user);
   
   useEffect(() => {
@@ -36,7 +36,7 @@ function App() {
             payload: { foods: data.orderFoods, details: data.orderDetails } });
         });
     }
-  }, [dispatch, user]);
+  }, [dispatch, user, id]);
 
   return (
 

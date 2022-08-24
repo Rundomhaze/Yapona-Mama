@@ -31,9 +31,7 @@ function Cart() {
   }, [dispatch, user]);
 
   useEffect(() => {
-    // EDIT_QUANTITY
     if ('id' in user && 'type' in foodsAction && foodsAction.type === 'EDIT_QUANTITY') {
-      console.log('EDIT_QUANTITY');
       fetch('/api/cart', {
         method: 'PUT',
         headers: { 'Content-type': 'Application/json' },
@@ -45,8 +43,6 @@ function Cart() {
         })
       }).then((data) => data); 
     } else if ('id' in user && 'type' in foodsAction && foodsAction.type === 'DELETE_FOOD') {
-    // DELETE_FOOD
-      console.log('DELETE_FOOD');
       fetch('/api/cart', {
         method: 'DELETE',
         headers: { 'Content-type': 'Application/json' },
@@ -90,6 +86,7 @@ function Cart() {
         entrance: event.target.entrance.value,
         floor: event.target.floor.value,
         flat: event.target.flat.value,
+        foods,
       }) 
     });
     dispatch({ type: 'CLEAR_CART' });
@@ -135,7 +132,7 @@ function Cart() {
         </ul>
         <div className="collection-item footer">
           <div className="totalTitle">Итоговая стоимость:</div>
-          {details[0] && <div className="totalValue">{`${details.total_price} ₽`}</div>}
+          <div className="totalValue">{`${details.total_price} ₽`}</div>
         </div>
         <h4 className="cart-header">Оформление заказа</h4>
         <div className="row">

@@ -2,9 +2,64 @@
 /* eslint-disable camelcase */
 const router = require('express').Router();
 
-const { Order, OrdersFood, Food } = require('../../db/models');
+const TelegramBot = require('node-telegram-bot-api');
+const {
+  Order, OrdersFood, Food, TelegramChat,
+} = require('../../db/models');
 
-const { sequelize } = require('../../db/models');
+const token = '5400872641:AAGRVwB_vpkDszos-j5_wOhClNAY1FZssdI';
+const bot = new TelegramBot(token, { polling: true });
+
+bot.onText(/\/start/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  const chat = await TelegramChat.findOne({
+    raw: true,
+    where: {
+      chatId,
+    },
+  });
+
+  if (chat) {
+    console.log('Telegram Bot: Allready registred.');
+    bot.sendMessage(chatId, 'Хм, Вы уже зарегистрированы...');
+  } else {
+    TelegramChat.create({ chatId });
+    console.log('Telegram Bot: New user registred.');
+    bot.sendMessage(chatId, 'Поздравляем! \nТеперь вы будете получать сообщения с новыми заказами.');
+  }
+});
+function formatDate(date) {
+  const d = date;
+  let month = `${d.getMonth() + 1}`;
+  let day = `${d.getDate()}`;
+  const year = d.getFullYear();
+
+  if (month.length < 2) { month = `0${month}`; }
+  if (day.length < 2) { day = `0${day}`; }
+
+  return [year, month, day].join('-');
+}
+
+const createMail = (order, foods) => {
+  let foodsList = '';
+  foods.forEach((food, index) => {
+    foodsList += `${index + 1}. ${food['Food.title']}\n`
+    + `    ${food['Food.new_price']} руб. х ${food.quantity} шт. = ${food['Food.new_price'] * food.quantity} руб.\n`;
+  });
+
+  const message = `*Заказ №${order.id} от ${formatDate(order.updatedAt)}*\n\n`
+  + `_Телефон:_ ${order.phone}\n`
+  + `_Улица:_ ${order.street || '-'}\n`
+  + `_Дом:_ ${order.house || '-'}\n`
+  + `_Подъезд:_ ${order.entrance || '-'}\n`
+  + `_Этаж:_ ${order.floor || '-'}\n`
+  + `_Квартира:_ ${order.flat || '-'}\n`
+  + `_Комментарий:_ ${order.comment || '-'}\n\n`
+  + `${foodsList}\n`
+  + `Итого: ${order.total_price} руб.\n`;
+
+  return message;
+};
 
 router
   .get('/cart', async (req, res) => {
@@ -124,12 +179,15 @@ router
       entrance,
       floor,
       flat,
+      foods,
     } = req.body;
 
     const currPhone = phone
       .split('')
       .filter((el) => el != '-' && el != '(' && el != ')')
       .join('');
+
+    let order;
 
     if (order_id) {
       await Order.update({
@@ -145,8 +203,9 @@ router
       }, {
         where: { id: order_id },
       });
+      order = await Order.findByPk(order_id);
     } else {
-      await Order.create({
+      order = await Order.create({
         total_price,
         comment,
         phone,
@@ -157,6 +216,37 @@ router
         flat,
         is_ordered: true,
       });
+
+      await Promise.all(foods.map(async (food) => {
+        await OrdersFood.create({
+          order_id: order.id,
+          food_id: food.food_id,
+          quantity: food.quantity,
+          price: food['Food.new_price'],
+        });
+      }));
+    }
+
+    const orderFoods = await OrdersFood.findAll({
+      raw: true,
+      attributes: ['quantity', 'order_id', 'food_id'],
+      where: {
+        order_id: order_id || order.id,
+      },
+      include: [{
+        model: Food,
+        attributes: ['title', 'description', 'photo', 'new_price'],
+      }],
+    });
+
+    const message = createMail(order, orderFoods);
+    const chats = await TelegramChat.findAll();
+    if (chats.length > 0) {
+      chats.forEach((chat) => {
+        bot.sendMessage(chat.chatId, message, { parse_mode: 'markdown' });
+      });
+    } else {
+      console.log('Telegram Bot: No registred chats.');
     }
 
     res.status(200).json({ message: 'Order updated successfully' });

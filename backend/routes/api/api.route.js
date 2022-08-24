@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 const router = require('express').Router();
 
@@ -13,7 +14,7 @@ router
     const user_id = req.session.user.id;
 
     try {
-      const orderDetails = await Order.findAll({
+      const orderDetails = await Order.findOne({
         raw: true,
         where: {
           user_id,
@@ -21,8 +22,8 @@ router
         },
       });
 
-      if (orderDetails.length) {
-        const orderId = orderDetails[0].id;
+      if (orderDetails) {
+        const orderId = orderDetails.id;
 
         const orderFoods = await OrdersFood.findAll({
           raw: true,
@@ -35,9 +36,10 @@ router
             attributes: ['title', 'description', 'photo', 'new_price'],
           }],
         });
-        res.status(201).json({ orderDetails, orderFoods });
+        res.status(200).json({ orderDetails, orderFoods });
       } else {
-        res.status(201).json({ orderDetails });
+        const newOrder = await Order.create({ user_id });
+        res.status(200).json({ orderDetails: newOrder, orderFoods: [] });
       }
     } catch (error) {
       res.status(500).json({ error: error.message });
@@ -70,6 +72,8 @@ router
     }, {
       where: { id: order_id },
     });
+
+    res.status(200).json({ message: 'Updated successfully' });
   })
   .put('/cart', async (req, res) => {
     const {
@@ -87,6 +91,8 @@ router
     }, {
       where: { id: order_id },
     });
+
+    res.status(200).json({ message: 'Updated successfully' });
   })
   .delete('/cart', async (req, res) => {
     const { order_id, food_id, total_price } = req.body;
@@ -104,9 +110,56 @@ router
     }, {
       where: { id: order_id },
     });
+
+    res.status(200).json({ message: 'Deleted successfully' });
   })
   .post('/order', async (req, res) => {
-    const { order_id, food_id, total_price } = req.body;
+    const {
+      order_id,
+      total_price,
+      comment,
+      phone,
+      street,
+      house,
+      entrance,
+      floor,
+      flat,
+    } = req.body;
+
+    const currPhone = phone
+      .split('')
+      .filter((el) => el != '-' && el != '(' && el != ')')
+      .join('');
+
+    if (order_id) {
+      await Order.update({
+        total_price,
+        comment,
+        phone: currPhone,
+        street,
+        house,
+        entrance,
+        floor,
+        flat,
+        is_ordered: true,
+      }, {
+        where: { id: order_id },
+      });
+    } else {
+      await Order.create({
+        total_price,
+        comment,
+        phone,
+        street,
+        house,
+        entrance,
+        floor,
+        flat,
+        is_ordered: true,
+      });
+    }
+
+    res.status(200).json({ message: 'Order updated successfully' });
   });
 
 module.exports = router;

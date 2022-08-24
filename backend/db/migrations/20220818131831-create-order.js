@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       phone: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.TEXT,
       },
       street: {
         type: Sequelize.TEXT,

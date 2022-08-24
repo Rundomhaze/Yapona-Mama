@@ -11,7 +11,6 @@ function Navbar() {
   const [regaModal, setRegaModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const { user } = useSelector((state) => state.user);
-  // const user = { id: 1, name: 'admin', status: true };///////  ИСКУССТВЕННО СОЗДАНЫЙ ЮЗЕР ДЛЯ УСЛОВНОГО РЕНДЕРИНГА
   const dispatch = useDispatch();
  
   const navigate = useNavigate();
@@ -27,7 +26,11 @@ function Navbar() {
       body: JSON.stringify(body)
     })
       .then((result) => result.json())
-      .then((data) => dispatch(logoutAC(data)));
+      .then((data) => {
+        dispatch(logoutAC(data));
+        dispatch({ type: 'CLEAR_CART' });
+        navigate('/');
+      });
   }
 
   return (
@@ -45,14 +48,14 @@ function Navbar() {
                     setLoginModal(true);
                   }}
                   >Войти
-                  </a>
+                      </a>
                   </li>
                   <li><a onClick={() => {
                     setLoginModal(false);
                     setRegaModal(true);
                   }}
                   >Зарегистрироваться
-                  </a>
+                      </a>
                   </li>
                 </>
               ) : user.status ? (
@@ -63,7 +66,7 @@ function Navbar() {
               ) : (
                 <>
                   <li><a onClick={handleLogout}>Выйти</a></li>
-                  <li><a href="/">Личный кабинет</a></li>
+                  <li><a href="/user_room">Личный кабинет</a></li>
                 </>
               )}
 
@@ -86,12 +89,24 @@ function Navbar() {
         <div className="divnavbar2">
           <ul id="nav-mobile" className="">
             <li><a>Работаем 11:00 - 04:00 </a></li>
-            <li><a>Доставка еды от 45 минут</a></li>
-            <li><a>Личный кабинет</a></li>
-            {user && user.name ? (
-              <li><a>Здравствуйте, {user.name} !</a></li>
+            <li><a href="/delivery">Доставка еды от 45 минут</a></li>
+            
+            {user && user.id ? (
+              <li><a href="/user_room">Личный кабинет</a></li>
             ) : (
-              <li><a>Здравствуйте, гость!</a></li>
+              <></>
+            )}
+          
+            {user && user.name ? (
+              <li><a href="/user_room">Здравствуйте, {user.name} !</a></li>
+            ) : (
+              <li><a onClick={() => {
+                setLoginModal(false);
+                setRegaModal(true);
+              }}
+              >Здравствуйте, гость!
+                  </a>
+              </li>
             )}
           </ul>
         </div>

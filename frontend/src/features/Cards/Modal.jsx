@@ -54,7 +54,6 @@ const style = (theme) => ({
 export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy }) {
 
   const handleClose = () => setOpen(false);
-
   const { foods, details } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -64,21 +63,21 @@ export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy })
       type: 'ADD_FOOD', 
       payload: { 
         roll, 
-        order_id: details[0] && details[0].id
+        order_id: details.id
       } 
     });
     dispatch({ type: 'COUNT_TOTAL' });
 
-    if (user) {
-      await fetch('/api/cart', {
+    if ('id' in user) {
+      fetch('/api/cart', {
         method: 'POST',
         headers: { 'Content-type': 'Application/json' },
         body: JSON.stringify({
-          order_id: details[0].id,
+          order_id: details.id,
           food_id: roll.id,
-          total_price: details[0].total_price
+          total_price: details.total_price
         }) 
-      });
+      }).then((data) => data);
     }
   };
 
@@ -94,7 +93,9 @@ export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy })
       >
         <Box sx={style} className="modalcard">
           <div className="flexDiv">
+
             <div className="close"><a onClick={() => setOpen(false)}>❌</a></div>
+
             <div className="flex">
               <img src={roll.photo} alt="" className="materialboxed" />
             </div>

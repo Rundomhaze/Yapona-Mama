@@ -12,7 +12,15 @@ authRouter.get('/user', async (req, res) => {
         message: null,
         user: {
           id: user.id,
-          name: user.name
+          name: user.name,
+          email: user.email,
+          phone: user.phone,
+          orderPhone: user.orderPhone,
+          orderStreet: user.orderStreet,
+          orderHouse: user.orderHouse,
+          orderEntrance: user.orderEntrance,
+          orderFloor: user.orderFloor,
+          orderFlat: user.orderFlat
         }
       });
     } else {

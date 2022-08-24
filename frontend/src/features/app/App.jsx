@@ -8,13 +8,14 @@ import MainComponent from '../main/MainComponent';
 import Delivery from '../delivery/Delivery';
 import Sale from '../sale/Sale';
 import AdminCabinet from '../Cabinet/AdminCabinet';
+import UserCabinet from '../Cabinet/UserCabinet';
 import Cart from '../cart/Cart';
 
 function App() {
   const dispatch = useDispatch();
   const { foods, details } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
-
+  
   useEffect(() => {
     fetch('http://localhost:4000/auth/user', {
       method: 'GET',
@@ -26,7 +27,7 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (user) {
+    if ('id' in user) {
       fetch('/api/cart')
         .then((result) => result.json())
         .then((data) => {
@@ -46,6 +47,7 @@ function App() {
           <Route path="/delivery" element={<Delivery />} />
           <Route path="/sale" element={<Sale />} />
           <Route path="/admin" element={<AdminCabinet />} />
+          <Route path="/user_room" element={<UserCabinet />} />
           <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>

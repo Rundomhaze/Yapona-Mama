@@ -1,0 +1,11 @@
+.userCab {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 5%;
+  align-items: center;
+}
+
+.formPass {
+  margin-top: 5%;
+}

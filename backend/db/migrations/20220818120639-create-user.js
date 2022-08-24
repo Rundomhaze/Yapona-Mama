@@ -28,6 +28,24 @@ module.exports = {
         allowNull: false,
         type: Sequelize.BOOLEAN,
       },
+      orderPhone: {
+        type: Sequelize.TEXT,
+      },
+      orderStreet: {
+        type: Sequelize.TEXT,
+      },
+      orderHouse: {
+        type: Sequelize.TEXT,
+      },
+      orderEntrance: {
+        type: Sequelize.TEXT,
+      },
+      orderFloor: {
+        type: Sequelize.TEXT,
+      },
+      orderFlat: {
+        type: Sequelize.TEXT,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

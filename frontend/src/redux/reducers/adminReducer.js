@@ -15,6 +15,12 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state, food: [...state.food, action.payload], filterfood: [...state.filterfood, action.payload]
       };
+    case actionType.DELETE_FOOD:
+      const delElId = action.payload.id;
+      const newArr = state.food.filter((el) => el.id !== delElId);
+      return {
+        ...state, food: newArr, filterfood: newArr
+      };
     default:
       return state;
   }

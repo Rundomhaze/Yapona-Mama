@@ -32,5 +32,13 @@ foodLoadAdminRouter.post('/add', async (req, res) => {
   });
   return res.status(201).json(newFood);
 });
-
+foodLoadAdminRouter.delete('/del', async (req, res) => {
+  const { id } = req.body;
+  const delEl = await Food.destroy({
+    where: {
+      id,
+    },
+  });
+  return res.status(201).json({ id });
+});
 module.exports = foodLoadAdminRouter;

@@ -15,7 +15,7 @@ function AdminCabinet() {
       .then((data) =>
         dispatch(actionCreator.loadFoods(data))
       );
-  }, [filterfood]);
+  }, []);
 
   // if (!filterfood) return <div>Zagruzka</div>;
 
@@ -82,7 +82,9 @@ function AdminCabinet() {
         <br />
       </form>
       <div className="alladmindiv">{filterfood.map((el) => (
+
         <AdminCard el={el} key={el.id} />
+
       ))}
       </div>
       <div className="upBtn"><a href="#">Наверх</a></div>

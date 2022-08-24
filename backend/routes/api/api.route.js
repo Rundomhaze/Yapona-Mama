@@ -104,6 +104,9 @@ router
     }, {
       where: { id: order_id },
     });
+  })
+  .post('/order', async (req, res) => {
+    const { order_id, food_id, total_price } = req.body;
   });
 
 module.exports = router;

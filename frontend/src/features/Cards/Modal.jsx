@@ -70,15 +70,15 @@ export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy })
     dispatch({ type: 'COUNT_TOTAL' });
 
     if (user) {
-      // await fetch('/api/cart', {
-      //   method: 'POST',
-      //   headers: { 'Content-type': 'Application/json' },
-      //   body: JSON.stringify({
-      //     order_id: details[0].id,
-      //     food_id: roll.id,
-      //     total_price: details[0].total_price
-      //   }) 
-      // });
+      await fetch('/api/cart', {
+        method: 'POST',
+        headers: { 'Content-type': 'Application/json' },
+        body: JSON.stringify({
+          order_id: details[0].id,
+          food_id: roll.id,
+          total_price: details[0].total_price
+        }) 
+      });
     }
   };
 

@@ -25,17 +25,17 @@ function App() {
       .then((data) => dispatch(regUserAC(data)));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     fetch('/api/cart')
-  //       .then((result) => result.json())
-  //       .then((data) => {
-  //         dispatch({ 
-  //           type: 'LOAD_CART', 
-  //           payload: { foods: data.orderFoods, details: data.orderDetails } });
-  //       });
-  //   }
-  // }, [dispatch, user]);
+  useEffect(() => {
+    if (user) {
+      fetch('/api/cart')
+        .then((result) => result.json())
+        .then((data) => {
+          dispatch({ 
+            type: 'LOAD_CART', 
+            payload: { foods: data.orderFoods, details: data.orderDetails } });
+        });
+    }
+  }, [dispatch, user]);
 
   return (
 

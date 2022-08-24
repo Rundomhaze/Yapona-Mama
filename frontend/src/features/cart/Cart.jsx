@@ -3,6 +3,7 @@
 import './cart.css';
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import InputMask from 'react-input-mask';
 
 function Cart() {
   const { foods, details } = useSelector((state) => state.cart);
@@ -10,44 +11,69 @@ function Cart() {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch({ type: 'COUNT_TOTAL' });
+    if (user) {
+      const inputs = document.querySelectorAll('.orderInput');
+      console.log(inputs);
+    }
+  }, []);
+
   const handleQuantityClick = async (event, add, order_id, food_id, index) => {
     event.preventDefault();
     dispatch({ type: 'EDIT_QUANTITY', payload: { add, order_id, food_id } });
     dispatch({ type: 'COUNT_TOTAL' });
-    // if (user) {
-    //   await fetch('/api/cart', {
-    //     method: 'PUT',
-    //     headers: { 'Content-type': 'Application/json' },
-    //     body: JSON.stringify({
-    //       order_id,
-    //       food_id,
-    //       quantity: foods[index].quantity,
-    //       total_price: details[0].total_price
-    //     }) 
-    //   });
-    // } 
+    if (user) {
+      await fetch('/api/cart', {
+        method: 'PUT',
+        headers: { 'Content-type': 'Application/json' },
+        body: JSON.stringify({
+          order_id,
+          food_id,
+          quantity: foods[index].quantity,
+          total_price: details[0].total_price
+        }) 
+      });
+    } 
+    console.log(details);
   };
 
   const handleDeleteClick = async (event, order_id, food_id) => {
     event.preventDefault();
     dispatch({ type: 'DELETE_FOOD', payload: { order_id, food_id } });
     dispatch({ type: 'COUNT_TOTAL' });
-    // if (user) {
-    //   await fetch('/api/cart', {
-    //     method: 'DELETE',
-    //     headers: { 'Content-type': 'Application/json' },
-    //     body: JSON.stringify({
-    //       order_id,
-    //       food_id,
-    //       total_price: details[0].total_price
-    //     }) 
-    //   });
-    // } 
+    if (user) {
+      await fetch('/api/cart', {
+        method: 'DELETE',
+        headers: { 'Content-type': 'Application/json' },
+        body: JSON.stringify({
+          order_id,
+          food_id,
+          total_price: details[0].total_price
+        }) 
+      });
+    } 
   };
 
-  const handleOrderClick = (event) => {
+  const handleOrderSubmit = async (event) => {
     event.preventDefault();
-    
+    if (user) {
+      await fetch('/api/order', {
+        method: 'POST',
+        headers: { 'Content-type': 'Application/json' },
+        body: JSON.stringify({
+          order_id,
+          total_price: details[0].total_price,
+          comment: event.target.comment.value,
+          phone: event.target.phone.value,
+          street: event.target.street.value,
+          house: event.target.house.value,
+          entrance: event.target.entrance.value,
+          floor: event.target.floor.value,
+          flat: event.target.flat.value,
+        }) 
+      });
+    }
   };
 
   return (
@@ -93,48 +119,58 @@ function Cart() {
       </div>
       <h4 className="cart-header">Оформление заказа</h4>
       <div className="row">
-        <form className="col s12">
+        <form onSubmit={handleOrderSubmit} className="col s12">
           <div className="row">
             <div className="input-field col s4">
-              <input id="phone" tabIndex="1" type="text" className="validate" />
+              {/* <input id="phone" tabIndex="1" type="text" className="validate" /> */}
+              <InputMask 
+                mask="8-(999)-999-99-99"
+                name="phone"
+                type="tel" 
+                id="phone"
+                tabIndex="1"
+                className="orderInput"
+                required
+              />
               <label htmlFor="phone">Телефон</label>
             </div>
             
             <div className="input-field col s4">
-              <input id="street" tabIndex="2" type="text" className="validate" />
+              <input name="street" id="street" tabIndex="2" type="text" className="validate orderInput" />
               <label htmlFor="street">Улица</label>
             </div>
 
             <div className="input-field col s1">
-              <input id="house" tabIndex="3" type="text" className="validate" />
+              <input name="house" id="house" tabIndex="3" type="text" className="validate orderInput" />
               <label htmlFor="house">Дом</label>
             </div>
 
             <div className="input-field col s1">
-              <input id="entrance" tabIndex="4" type="text" className="validate" />
+              <input name="entrance" id="entrance" tabIndex="4" type="text" className="validate orderInput" />
               <label htmlFor="entrance">Подъезд</label>
             </div>
 
             <div className="input-field col s1">
-              <input id="floor" tabIndex="5" type="text" className="validate" />
+              <input name="floor" id="floor" tabIndex="5" type="text" className="validate orderInput" />
               <label htmlFor="floor">Этаж</label>
             </div>
 
             <div className="input-field col s1">
-              <input id="flat" tabIndex="6" type="text" className="validate" />
+              <input name="flat" id="flat" tabIndex="6" type="text" className="validate orderInput" />
               <label htmlFor="flat">Квартира</label>
             </div>
 
             <div className="input-field col s12">
-              <textarea id="comment" tabIndex="7" type="text" className="materialize-textarea" />
+              <textarea name="comment" id="comment" tabIndex="7" type="text" className="materialize-textarea orderInput" />
               <label htmlFor="comment">Комментарии к заказу</label>
             </div>
           </div>
+          <div className="collection-item footer order">
+            <button type="submit" className="waves-effect waves-light btn-large">Оформить</button>
+          </div>
         </form>
       </div>
-      <div className="collection-item footer order">
-        <a href="order" onClick={handleOrderClick} className="waves-effect waves-light btn-large">Оформить</a>
-      </div>
+
     </div>
   );
 }

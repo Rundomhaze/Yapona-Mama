@@ -11,7 +11,7 @@ function Hits() {
     fetch('/api/hits', { method: 'GET' })
       .then((result) => result.json())
       .then((data) => setHits(data))
-  }, [allHits]);
+  }, []);
 
 
   return (

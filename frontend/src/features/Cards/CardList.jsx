@@ -10,18 +10,18 @@ function CardList({ allFood }) {
 
   return (
     <div className="maindivmap" >
-      <h3 key={uuidv4()}>{allFood[0]['Type.title']}</h3>
-      <div key={uuidv4()} className="row">
+      <h3>{allFood[0]['Type.title']}</h3>
+      <div className="row">
         {allFood[0]['Subtype.title'] && allFood[0]['Subtype.title'] !== null
           ? (
-            subType.map((subtype) => (
-              <div key={uuidv4()} className='rollsrow'>
-                <h4 key={uuidv4()}>{subtype}</h4>
-                <div key={uuidv4()}>
+            subType.map((subtype, i) => (
+              <div key={`a${i}`} className='rollsrow'>
+                <h4>{subtype}</h4>
+                <div>
                   {allFood.map((onefood) => subtype === onefood['Subtype.title']
                     ? (
                       <Onecard key={onefood.id} onefood={onefood} vegan={vegan} spicy={spicy} />)
-                    : (<></>)
+                    : (<div key={onefood.id}></div>)
                   )}
                 </div>
               </div>))

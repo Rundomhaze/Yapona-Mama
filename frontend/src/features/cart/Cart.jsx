@@ -45,6 +45,11 @@ function Cart() {
     // } 
   };
 
+  const handleOrderClick = (event) => {
+    event.preventDefault();
+    
+  };
+
   return (
     <div className="container">
       <h4 className="cart-header">Корзина</h4>
@@ -91,39 +96,44 @@ function Cart() {
         <form className="col s12">
           <div className="row">
             <div className="input-field col s4">
-              <input id="street" type="text" className="validate" />
+              <input id="phone" tabIndex="1" type="text" className="validate" />
+              <label htmlFor="phone">Телефон</label>
+            </div>
+            
+            <div className="input-field col s4">
+              <input id="street" tabIndex="2" type="text" className="validate" />
               <label htmlFor="street">Улица</label>
             </div>
 
-            <div className="input-field col s2">
-              <input id="house" type="text" className="validate" />
+            <div className="input-field col s1">
+              <input id="house" tabIndex="3" type="text" className="validate" />
               <label htmlFor="house">Дом</label>
             </div>
 
-            <div className="input-field col s2">
-              <input id="entrance" type="text" className="validate" />
+            <div className="input-field col s1">
+              <input id="entrance" tabIndex="4" type="text" className="validate" />
               <label htmlFor="entrance">Подъезд</label>
             </div>
 
-            <div className="input-field col s2">
-              <input id="floor" type="text" className="validate" />
+            <div className="input-field col s1">
+              <input id="floor" tabIndex="5" type="text" className="validate" />
               <label htmlFor="floor">Этаж</label>
             </div>
 
-            <div className="input-field col s2">
-              <input id="flat" type="text" className="validate" />
+            <div className="input-field col s1">
+              <input id="flat" tabIndex="6" type="text" className="validate" />
               <label htmlFor="flat">Квартира</label>
             </div>
 
             <div className="input-field col s12">
-              <textarea id="comment" type="text" className="materialize-textarea" />
+              <textarea id="comment" tabIndex="7" type="text" className="materialize-textarea" />
               <label htmlFor="comment">Комментарии к заказу</label>
             </div>
           </div>
         </form>
       </div>
       <div className="collection-item footer order">
-        <a className="waves-effect waves-light btn-large">Оформить</a>
+        <a href="order" onClick={handleOrderClick} className="waves-effect waves-light btn-large">Оформить</a>
       </div>
     </div>
   );

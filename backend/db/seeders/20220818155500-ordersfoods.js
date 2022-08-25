@@ -4,18 +4,14 @@ module.exports = {
       order_id: 1,
       food_id: 1,
       quantity: 1,
+      price: 109,
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {
       order_id: 1,
       food_id: 2,
       quantity: 1,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }, {
-      order_id: 1,
-      food_id: 3,
-      quantity: 10,
+      price: 89,
       createdAt: new Date(),
       updatedAt: new Date(),
     }, {

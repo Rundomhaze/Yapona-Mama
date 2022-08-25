@@ -101,22 +101,22 @@ export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy })
             </div>
             <div className="modalbtn">
               <div>
-                {roll.is_vegan && <img src={vegan} alt="" />}
-                {roll.is_spicy && <img src={spicy} alt="" />}
+                {roll.is_vegan && <img src={vegan} alt="" className="iconspiveg" />}
+                {roll.is_spicy && <img src={spicy} alt="" className="iconspiveg" />}
               </div>
-              <a className="btn-floating btn-small waves-effect waves-light blue "><i onClick={(event) => handleAddClick(event, roll)} className="material-icons">add</i></a>
+              <a className="btn-floating btn-large waves-effect waves-light orange "><i onClick={(event) => handleAddClick(event, roll)} className="material-icons">add</i></a>
             </div>
             <div className="divBox">
               <div className="card-content_modal">
-                <div className="card-content_subtitle">
-                  <span className="titlecard" style={{ color: 'red' }}>{roll.title}</span>
-                  <span className="titlecard" style={{ color: 'green' }}>{roll.new_price}</span>
+                <div className="card-content_subtitle modalinfo">
+                  <span className="titlecardmodal " style={{ color: 'green' }}>{roll.title}</span>
+                  <span className="titlecardmodal " style={{ color: 'green' }}>{roll.old_price && <s style={{ color: 'red' }}>{roll.old_price} ₽</s>} {roll.new_price} ₽</span>
                 </div>
+                {roll.description && <p className="desccard infofood">Состав: {roll.description}</p>}
+                {roll['Subtype.title'] && <span className="typeroll infofood"> <span> Вид : {roll['Subtype.title']}</span> </span>}
                 <br />
-                <p className="desccard"><i>Ингредиенты: {roll.description}</i></p>
-                <span className="typeroll"> Вид : {roll['Subtype.title']} </span>
+                {roll.weight && <span className="typeroll infofood">Вес: {roll.weight} грамм</span>}
               </div>
-             
             </div>
           </div>
           {/* <h2 id="unstyled-modal-title">сюда картинку</h2>

@@ -58,6 +58,7 @@ export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy })
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+
   const handleAddClick = async (event, roll) => {
     dispatch({ 
       type: 'ADD_FOOD', 
@@ -79,6 +80,8 @@ export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy })
         }) 
       }).then((data) => data);
     }
+
+    setOpen(false);
   };
 
   return (

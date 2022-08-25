@@ -66,7 +66,7 @@ router
     // При успехе ответ содержит информацию о товарах в корзине
     // const { user_id } = req.body;
 
-    const user_id = req.session.user.id;
+    const user_id = req.session.userId;
 
     try {
       const orderDetails = await Order.findOne({

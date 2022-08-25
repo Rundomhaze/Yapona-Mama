@@ -11,6 +11,7 @@ function Navbar() {
   const [regaModal, setRegaModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const { user } = useSelector((state) => state.user);
+  const { total_price } = useSelector((state) => state.cart.details);
   const dispatch = useDispatch();
  
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ function Navbar() {
         navigate('/');
       });
   }
-
+  
   return (
     <>
       <div className="divnavbar">
@@ -69,11 +70,15 @@ function Navbar() {
                   <li><a onClick={() => navigate('/user_room')}>Личный кабинет</a></li>
                 </>
               )}
-
               <li><a onClick={() => navigate('/')}>Меню</a></li>
               <li><a onClick={() => navigate('/sale')}>Акции</a></li>
-              <li><a onClick={() => navigate('/cart')}>Корзина</a></li>
               <li><a onClick={() => navigate('/delivery')}>Доставка</a></li>
+              <li className="cartLi">
+                <a className="waves-effect waves-light cartLink" onClick={() => navigate('/cart')}>
+                  <i className="material-icons left cartIcon">shopping_cart</i>
+                  {(total_price > 0) ? (<>{total_price + " ₽"} </>) : (<>Корзина</>)}
+                </a>
+              </li>
             </ul>
           </div>
         </nav>

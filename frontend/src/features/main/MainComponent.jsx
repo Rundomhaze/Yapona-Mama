@@ -51,7 +51,7 @@ function MainComponent() {
           CУПЫ
         </div>
         <div onClick={() => setId(4)} className="iconfood ">
-          <img src={wok} alt="" /><br />
+          <img src={wok} alt=""/><br />
           САЛАТЫ и WOK
         </div>
         <div onClick={() => setId(5)} className="iconfood ">

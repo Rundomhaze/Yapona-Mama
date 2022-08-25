@@ -18,27 +18,35 @@ foodLoadAdminRouter.get('/load', async (req, res) => {
 });
 
 foodLoadAdminRouter.post('/add', async (req, res) => {
-  const {
-    photo, title, description, weight, new_price, is_vegan, is_spicy,
-  } = req.body;
-  const newFood = await Food.create({
-    photo,
-    title,
-    description,
-    weight,
-    new_price,
-    is_vegan,
-    is_spicy,
-  });
-  return res.status(201).json(newFood);
+  try {
+    const {
+      photo, title, description, weight, new_price, is_vegan, is_spicy,
+    } = req.body;
+    const newFood = await Food.create({
+      photo,
+      title,
+      description,
+      weight,
+      new_price,
+      is_vegan,
+      is_spicy,
+    });
+    return res.status(201).json(newFood);
+  } catch (err) {
+    res.json(err.message);
+  }
 });
 foodLoadAdminRouter.delete('/del', async (req, res) => {
-  const { id } = req.body;
-  const delEl = await Food.destroy({
-    where: {
-      id,
-    },
-  });
-  return res.status(201).json({ id });
+  try {
+    const { id } = req.body;
+    const delEl = await Food.destroy({
+      where: {
+        id,
+      },
+    });
+    return res.status(201).json({ id });
+  } catch (err) {
+    res.json(err.message);
+  }
 });
 module.exports = foodLoadAdminRouter;

@@ -13,7 +13,7 @@ function Navbar() {
   const { user } = useSelector((state) => state.user);
   const { total_price } = useSelector((state) => state.cart.details);
   const dispatch = useDispatch();
- 
+
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -33,7 +33,6 @@ function Navbar() {
         navigate('/');
       });
   }
-  
   return (
     <>
       <div className="divnavbar">
@@ -49,17 +48,17 @@ function Navbar() {
                     setLoginModal(true);
                   }}
                   >Войти
-                      </a>
+                  </a>
                   </li>
                   <li><a onClick={() => {
                     setLoginModal(false);
                     setRegaModal(true);
                   }}
                   >Зарегистрироваться
-                      </a>
+                  </a>
                   </li>
                 </>
-              ) : user.status ? (
+              ) : user.is_admin ? (
                 <>
                   <li><a onClick={handleLogout}>Выйти</a></li>
                   <li><a onClick={() => navigate('/admin')}>АДМИН КАБИНЕТ</a></li>
@@ -95,6 +94,7 @@ function Navbar() {
         <div className="divnavbar2">
           <ul id="nav-mobile" className="">
             <li><a>Работаем 11:00 - 04:00 </a></li>
+
             <li><a onClick={() => navigate('/delivery')}>Доставка еды от 45 минут</a></li>
             
             {user && user.id ? (
@@ -102,7 +102,7 @@ function Navbar() {
             ) : (
               <></>
             )}
-          
+
             {user && user.name ? (
               <li><a onClick={() => navigate('/user_room')}>Здравствуйте, {user.name} !</a></li>
             ) : (
@@ -111,7 +111,7 @@ function Navbar() {
                 setRegaModal(true);
               }}
               >Здравствуйте, гость!
-                  </a>
+              </a>
               </li>
             )}
           </ul>

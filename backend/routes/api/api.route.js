@@ -44,19 +44,19 @@ const createMail = (order, foods) => {
   let foodsList = '';
   foods.forEach((food, index) => {
     foodsList += `${index + 1}. ${food['Food.title']}\n`
-    + `    ${food['Food.new_price']} руб. х ${food.quantity} шт. = ${food['Food.new_price'] * food.quantity} руб.\n`;
+      + `    ${food['Food.new_price']} руб. х ${food.quantity} шт. = ${food['Food.new_price'] * food.quantity} руб.\n`;
   });
 
   const message = `*Заказ №${order.id} от ${formatDate(order.updatedAt)}*\n\n`
-  + `_Телефон:_ ${order.phone}\n`
-  + `_Улица:_ ${order.street || '-'}\n`
-  + `_Дом:_ ${order.house || '-'}\n`
-  + `_Подъезд:_ ${order.entrance || '-'}\n`
-  + `_Этаж:_ ${order.floor || '-'}\n`
-  + `_Квартира:_ ${order.flat || '-'}\n`
-  + `_Комментарий:_ ${order.comment || '-'}\n\n`
-  + `${foodsList}\n`
-  + `Итого: ${order.total_price} руб.\n`;
+    + `_Телефон:_ ${order.phone}\n`
+    + `_Улица:_ ${order.street || '-'}\n`
+    + `_Дом:_ ${order.house || '-'}\n`
+    + `_Подъезд:_ ${order.entrance || '-'}\n`
+    + `_Этаж:_ ${order.floor || '-'}\n`
+    + `_Квартира:_ ${order.flat || '-'}\n`
+    + `_Комментарий:_ ${order.comment || '-'}\n\n`
+    + `${foodsList}\n`
+    + `Итого: ${order.total_price} руб.\n`;
 
   return message;
 };
@@ -67,6 +67,7 @@ router
     // const { user_id } = req.body;
 
     const user_id = req.session.userId;
+
 
     try {
       const orderDetails = await Order.findOne({

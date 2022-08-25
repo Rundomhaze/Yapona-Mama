@@ -17,7 +17,7 @@
 .modal_body{
   width: min-content;
   margin: auto;
-  background-color: rgb(187, 181, 181);
+  background-color: white !important;
   margin-top: 10%;
   padding: 50px;
   border-radius: 20px;
@@ -35,7 +35,7 @@
 }
 
 form {
-  width: 50vw;
+  width: 25vw;
 }
 
 .modal_button {

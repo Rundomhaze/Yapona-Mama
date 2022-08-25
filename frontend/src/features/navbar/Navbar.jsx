@@ -10,8 +10,7 @@ import label from '../../роллы/label.jpeg';
 function Navbar() {
   const [regaModal, setRegaModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
-  // const { user } = useSelector((state) => state.user);
-  const user = { id: 1, name: 'admin', status: true };///////  ИСКУССТВЕННО СОЗДАНЫЙ ЮЗЕР ДЛЯ УСЛОВНОГО РЕНДЕРИНГА
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
  
   const navigate = useNavigate();
@@ -27,7 +26,11 @@ function Navbar() {
       body: JSON.stringify(body)
     })
       .then((result) => result.json())
-      .then((data) => dispatch(logoutAC(data)));
+      .then((data) => {
+        dispatch(logoutAC(data));
+        dispatch({ type: 'CLEAR_CART' });
+        navigate('/');
+      });
   }
 
   return (
@@ -45,14 +48,14 @@ function Navbar() {
                     setLoginModal(true);
                   }}
                   >Войти
-                  </a>
+                      </a>
                   </li>
                   <li><a onClick={() => {
                     setLoginModal(false);
                     setRegaModal(true);
                   }}
                   >Зарегистрироваться
-                  </a>
+                      </a>
                   </li>
                 </>
               ) : user.status ? (
@@ -102,7 +105,8 @@ function Navbar() {
                 setRegaModal(true);
               }}
               >Здравствуйте, гость!
-              </a></li>
+                  </a>
+              </li>
             )}
           </ul>
         </div>

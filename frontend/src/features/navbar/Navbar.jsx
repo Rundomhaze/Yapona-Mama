@@ -70,6 +70,7 @@ function Navbar() {
                   <li><a onClick={() => navigate('/user_room')}>Личный кабинет</a></li>
                 </>
               )}
+
               <li><a onClick={() => navigate('/')}>Меню</a></li>
               <li><a onClick={() => navigate('/sale')}>Акции</a></li>
               <li><a onClick={() => navigate('/delivery')}>Доставка</a></li>

@@ -1,7 +1,7 @@
 const foodLoadRouter = require('express').Router();
 
 const {
-  Food, Subtype, Type, FoodsIngredient, Ingredient,
+  Food, Subtype, Type,
 } = require('../../db/models');
 
 foodLoadRouter.get('/load/:id', async (req, res) => {

@@ -11,6 +11,7 @@ function Navbar() {
   const [regaModal, setRegaModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const { user } = useSelector((state) => state.user);
+  const { total_price } = useSelector((state) => state.cart.details);
   const dispatch = useDispatch();
  
   const navigate = useNavigate();
@@ -32,13 +33,13 @@ function Navbar() {
         navigate('/');
       });
   }
-
+  
   return (
     <>
       <div className="divnavbar">
         <nav>
           <div className="nav-wrapper sticky-nav">
-            <a onClick={() => navigate('/')} className="brand-logo"><img src={label} className="img-logo" /></a>
+            <a onClick={(e) => navigate('/')} className="brand-logo"><img src={label} className="img-logo" /></a>
             <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
               {user && !user.id ? (
@@ -72,17 +73,22 @@ function Navbar() {
 
               <li><a onClick={() => navigate('/')}>Меню</a></li>
               <li><a onClick={() => navigate('/sale')}>Акции</a></li>
-              <li><a onClick={() => navigate('/cart')}>Корзина</a></li>
               <li><a onClick={() => navigate('/delivery')}>Доставка</a></li>
+              <li className="cartLi">
+                <a className="waves-effect waves-light cartLink" onClick={() => navigate('/cart')}>
+                  <i className="material-icons left cartIcon">shopping_cart</i>
+                  {(total_price > 0) ? (<>{total_price + " ₽"} </>) : (<>Корзина</>)}
+                </a>
+              </li>
             </ul>
           </div>
         </nav>
 
         <ul className="sidenav" id="mobile-demo">
-          <li><a href="/">Меню</a></li>
-          <li><a href="/sale">Акции</a></li>
-          <li><a href="/">Корзина</a></li>
-          <li><a href="/delivery">Доставка</a></li>
+          <li><a onClick={() => navigate('/')}>Меню</a></li>
+          <li><a onClick={() => navigate('/sale')}>Акции</a></li>
+          <li><a onClick={() => navigate('/cart')}>Корзина</a></li>
+          <li><a onClick={() => navigate('/delivery')}>Доставка</a></li>
         </ul>
       </div>
       <nav>

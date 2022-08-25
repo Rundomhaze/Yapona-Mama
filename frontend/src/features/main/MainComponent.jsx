@@ -41,6 +41,8 @@ function MainComponent() {
   const [visibleIngr, setVisibleIngr] = useState(false)
   const [visibleChiliVegan, setVisibleChiliVegan] = useState(false)
 
+  const [classNameState, setClassNameState] = useState(false)
+
 
   useEffect(() => {
     if (id > 0) {
@@ -57,6 +59,7 @@ function MainComponent() {
     setVisibleChiliVegan(false)
     setVisibleIngr(true)
     setIngr(event.target.value)
+    setClassNameState(false)
 
     fetch(`/ingredients/filter_food/${event.target.value}`, { method: 'GET' })
       .then((result) => result.json())
@@ -71,6 +74,7 @@ function MainComponent() {
     setVisibleIngr(false)
     setVisibleChiliVegan(false)
     setVisibleType(true)
+    setClassNameState(event.target.name)
   }
 
   const handleClickVeganChili = (event, type) => {
@@ -78,6 +82,7 @@ function MainComponent() {
     setVisibleType(false)
     setVisibleIngr(false)
     setVisibleChiliVegan(true)
+    setClassNameState(event.target.name)
 
     fetch(`/fil/filter_chili_vegan_food/${type}`, {method: 'GET'})
       .then((result) => result.json())
@@ -121,50 +126,61 @@ function MainComponent() {
         </Box>
       </div>
       
-      <div className="allcomp">
-        <div onClick={(event) => handleClickType(event, 1)} className="iconfood ">
-          <img src={rolls} alt="" /> <br />
+      <div className='allcomp'>
+
+        <div onClick={(event) => handleClickType(event, 1)} className={classNameState === 'rols' ? `iconfood activeClassTakeIt` : `iconfood`}>
+          <img src={rolls} alt="" name='rols'/> <br />
           РОЛЛЫ
         </div>
-        <div onClick={(event) => handleClickType(event, 2)} className="iconfood ">
-          <img src={sushi} alt="" /> <br />
+
+        <div onClick={(event) => handleClickType(event, 2)} className={classNameState === 'sushi' ? `iconfood activeClassTakeIt` : `iconfood`}>
+          <img src={sushi} name='sushi' alt="" /> <br />
           СУШИ
         </div>
-        <div onClick={(event) => handleClickType(event, 3)} className="iconfood ">
-          <img src={set} alt="" /><br />
+
+        <div onClick={(event) => handleClickType(event, 3)} className={classNameState === 'sets' ? `iconfood activeClassTakeIt` : `iconfood`}>
+          <img src={set} name='sets' alt="" /><br />
           СЕТЫ
         </div>
-        <div onClick={(event) => handleClickType(event, 6)} className="iconfood ">
-          <img src={soup} alt="" /><br />
+
+        <div onClick={(event) => handleClickType(event, 6)} className={classNameState === 'soups' ? `iconfood activeClassTakeIt` : `iconfood`}>
+          <img src={soup} name='soups' alt="" /><br />
           CУПЫ
         </div>
-        <div onClick={(event) => handleClickType(event, 4)} className="iconfood ">
-          <img src={wok} alt="" /><br />
-          САЛАТЫ и WOK
+
+        <div onClick={(event) => handleClickType(event, 4)} className={classNameState === 'woks' ? `iconfood activeClassTakeIt` : `iconfood`}>
+          <img src={wok} name='woks' alt="" /><br />
+          САЛАТЫ WOK
         </div>
-        <div onClick={(event) => handleClickType(event, 5)} className="iconfood ">
-          <img src={zakus} alt="" /><br />
+
+        <div onClick={(event) => handleClickType(event, 5)} className={classNameState === 'snacks' ? `iconfood activeClassTakeIt` : `iconfood`}>
+          <img src={zakus} name='snacks' alt="" /><br />
           ЗАКУСКИ
         </div>
-        <div onClick={(event) => handleClickType(event, 7)} className="iconfood ">
-          <img src={sous} alt="" /><br />
+
+        <div onClick={(event) => handleClickType(event, 7)} className={classNameState === 'souce' ? `iconfood activeClassTakeIt` : `iconfood`}>
+          <img src={sous} name='souce' alt="" /><br />
           СОУСЫ
         </div>
-        <div onClick={(event) => handleClickType(event, 8)} className="iconfood ">
-          <img src={sweet} alt="" /><br />
+
+        <div onClick={(event) => handleClickType(event, 8)} className={classNameState === 'desserts' ? `iconfood activeClassTakeIt` : `iconfood`}>
+          <img src={sweet} name='desserts' alt="" /><br />
           ДЕСЕРТЫ
         </div>
-        <div onClick={(event) => handleClickType(event, 9)} className="iconfood ">
-          <img src={water} alt="" /><br />
+
+        <div onClick={(event) => handleClickType(event, 9)} className={classNameState === 'potables' ? `iconfood activeClassTakeIt` : `iconfood`}>
+          <img src={water} name='potables' alt="" /><br />
           НАПИТКИ
         </div>
-        <div onClick={(event) => handleClickVeganChili(event, 'chili')} className="iconfood ">
-          <img src={chili} alt="" /><br />
+
+        <div onClick={(event) => handleClickVeganChili(event, 'chili')} className={classNameState === 'chilies' ? `iconfood activeClassTakeIt` : `iconfood`}>
+          <img src={chili} name='chilies'alt="" /><br />
           ОСТРОЕ
         </div>
-        <div onClick={(event) => handleClickVeganChili(event, 'vegan')} className="iconfood ">
-          <img src={brokolli} alt="" /><br />
-          ВЕГЕТАРИАНСКОЕ
+        
+        <div onClick={(event) => handleClickVeganChili(event, 'vegan')} className={classNameState === 'vega' ? `iconfood activeClassTakeIt` : `iconfood`}>
+          <img src={brokolli} name='vega' alt="" /><br />
+          VEGAN
         </div>
       </div>
                 

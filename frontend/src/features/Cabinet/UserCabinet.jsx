@@ -113,7 +113,7 @@ function UserCabinet() {
     borderTop: '1px solid rgba(0, 0, 0, .125)',
   }));
 
-  const [expanded, setExpanded] = React.useState('panel1');
+  const [expanded, setExpanded] = React.useState();
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);

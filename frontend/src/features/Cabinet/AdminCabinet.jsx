@@ -45,23 +45,25 @@ function AdminCabinet() {
 
   return (
     <div>
-      <h4>Добавим Карточку? </h4>
-      <div className="addcard">
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="photo" placeholder="Добавьте фотографию" />
-          <input type="text" name="title" placeholder="Наименование Товара" />
-          <input type="text" name="description" placeholder="Состав" />
-          <input type="text" name="weight" placeholder="Вес (граммы)" />
-          <input type="text" name="new_price" placeholder="Цена" />
+      <div className="classforpoli">
+        <h4>Добавим Карточку? </h4>
+        <div className="addcard">
+          <form onSubmit={handleSubmit}>
+            <input type="text" name="photo" placeholder="Добавьте фотографию" />
+            <input type="text" name="title" placeholder="Наименование Товара" />
+            <input type="text" name="description" placeholder="Состав" />
+            <input type="text" name="weight" placeholder="Вес (граммы)" />
+            <input type="text" name="new_price" placeholder="Цена" />
 
-          <h6>Веганское?</h6>
-          <input type="checkbox" name="is_vegan" className="checkboxIs" />
-          <br />
-          <h6>Острое?</h6>
-          <input type="checkbox" name="is_spicy" className="checkboxIs" />
-          <br />
-          <button type="submit">Сохранить</button>
-        </form>
+            <h6>Веганское?</h6>
+            <input type="checkbox" name="is_vegan" className="checkboxIs" />
+            <br />
+            <h6>Острое?</h6>
+            <input type="checkbox" name="is_spicy" className="checkboxIs" />
+            <br />
+            <button type="submit">Сохранить</button>
+          </form>
+        </div>
       </div>
 
       <h4>Выберите группу товаров</h4>

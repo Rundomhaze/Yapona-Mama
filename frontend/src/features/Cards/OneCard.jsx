@@ -15,7 +15,7 @@ function Onecard({ onefood, spicy, vegan }) {
           </div>
           <div className="card__extras">
             {onefood.is_vegan && <img src={vegan} alt="" className="icon" />}
-            {onefood.is_spicy && <img src={spicy} alt="" className="icon icon_2" />}
+            {onefood.is_spicy && <img src={spicy} alt="" className={`icon ${onefood.is_vegan && 'icon_2'}`} />}
           </div>
           <div className="redbtn">
             <a className="btn-floating btn-large waves-effect waves-light orange "><i className="material-icons">add</i></a>

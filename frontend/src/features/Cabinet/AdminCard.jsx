@@ -22,7 +22,9 @@ function AdminCard({ el }) {
   return (
 
     <form className="cardAdmin">
-      <img src={el.photo} alt="" />
+      <div className="cardAdminimg">
+        <img src={el.photo} alt="" className='admimg' />
+      </div>
       <input type="text" value={myvaluetitle || el.title} onChange={((event) => setMyvaluetitle(event.target.value))} />
       <input type="text" value={myvaluedesc || el.description} onChange={((event) => setMyvaluedesc(event.target.value))} />
       <button>Сохранить</button> <button>Обновить фото</button> <button onClick={handleDelete}>Удалить</button>

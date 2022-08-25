@@ -12,7 +12,7 @@ function Navbar() {
   const [loginModal, setLoginModal] = useState(false);
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
- 
+
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -32,7 +32,7 @@ function Navbar() {
         navigate('/');
       });
   }
-
+  console.log(user);
   return (
     <>
       <div className="divnavbar">
@@ -48,17 +48,17 @@ function Navbar() {
                     setLoginModal(true);
                   }}
                   >Войти
-                      </a>
+                  </a>
                   </li>
                   <li><a onClick={() => {
                     setLoginModal(false);
                     setRegaModal(true);
                   }}
                   >Зарегистрироваться
-                      </a>
+                  </a>
                   </li>
                 </>
-              ) : user.status ? (
+              ) : user.is_admin ? (
                 <>
                   <li><a onClick={handleLogout}>Выйти</a></li>
                   <li><a href="/admin">АДМИН КАБИНЕТ</a></li>
@@ -90,13 +90,13 @@ function Navbar() {
           <ul id="nav-mobile" className="">
             <li><a>Работаем 11:00 - 04:00 </a></li>
             <li><a href="/delivery">Доставка еды от 45 минут</a></li>
-            
+
             {user && user.id ? (
               <li><a href="/user_room">Личный кабинет</a></li>
             ) : (
               <></>
             )}
-          
+
             {user && user.name ? (
               <li><a href="/user_room">Здравствуйте, {user.name} !</a></li>
             ) : (
@@ -105,7 +105,7 @@ function Navbar() {
                 setRegaModal(true);
               }}
               >Здравствуйте, гость!
-                  </a>
+              </a>
               </li>
             )}
           </ul>

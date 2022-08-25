@@ -17,6 +17,7 @@
 .onecard {
   /* position: relative !important; */
   height: 400px;
+  width: 384px !important;
   border-radius: 5px !important;
   margin-bottom: 20px;
 
@@ -78,22 +79,25 @@
 }
 
 .icon {
-  height: 45px !important;
-  width: 45px !important;
+  height: 50px !important;
+  width: 50px !important;
   position: absolute;
   top: 0px;
   left: 86%;
 }
 
 .icon_2 {
-  left: 77% !important;
+  left: 74% !important;
 }
 
 .card__extras {
   display: flex;
   flex-direction: row;
   gap: 30px;
+  position: relative;
 }
+
+
 
 .maindivmap {
   display: block;
@@ -121,12 +125,13 @@
   /*Скрываем всё за контуром */
 }
 
-.hover-image-scale :hover {
+.boximage :hover {
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
 
 }
+
 
 .hover-image-scale img {
   transition: 1s;

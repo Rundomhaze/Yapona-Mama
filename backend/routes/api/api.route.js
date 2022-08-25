@@ -4,7 +4,7 @@ const router = require('express').Router();
 
 const TelegramBot = require('node-telegram-bot-api');
 const {
-  Order, OrdersFood, Food, TelegramChat,
+  Order, OrdersFood, Food, TelegramChat, User,
 } = require('../../db/models');
 
 const token = '5400872641:AAGRVwB_vpkDszos-j5_wOhClNAY1FZssdI';
@@ -67,7 +67,6 @@ router
     // const { user_id } = req.body;
 
     const user_id = req.session.userId;
-
 
     try {
       const orderDetails = await Order.findOne({
@@ -204,6 +203,16 @@ router
       }, {
         where: { id: order_id },
       });
+
+      await Promise.all(foods.map(async (food) => {
+        console.log(food);
+        await OrdersFood.update({
+          price: food['Food.new_price'],
+        }, {
+          where: { order_id, food_id: food.food_id },
+        });
+      }));
+
       order = await Order.findByPk(order_id);
     } else {
       order = await Order.create({
@@ -251,6 +260,33 @@ router
     }
 
     res.status(200).json({ message: 'Order updated successfully' });
+  })
+  .get('/orderlist', async (req, res) => {
+    const user_id = req.session.userId;
+    const orders = await Order.findAll({
+      raw: true,
+      where: {
+        user_id,
+        is_ordered: true,
+      },
+    });
+
+    const newOrders = await Promise.all(orders.map(async (order) => {
+      order.foods = await OrdersFood.findAll({
+        raw: true,
+        where: {
+          order_id: order.id,
+        },
+        attributes: ['quantity', 'price'],
+        include: [{
+          model: Food,
+          attributes: ['title', 'new_price'],
+        }],
+      });
+      return order;
+    }));
+
+    res.status(200).json({ newOrders });
   });
 
 module.exports = router;

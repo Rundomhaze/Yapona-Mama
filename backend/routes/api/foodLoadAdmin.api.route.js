@@ -10,7 +10,10 @@ foodLoadAdminRouter.get('/load', async (req, res) => {
       raw: true,
       include: [{ model: Subtype }, { model: Type }],
     });
-    res.json(allCards);
+    const types = await Type.findAll({
+      raw: true,
+    });
+    res.json({ allCards, types });
     // console.log(allCards);
   } catch (err) {
     res.json(err.message);

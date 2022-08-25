@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import './UserCabinet.css';
-import InputMask from "react-input-mask";
-import { useSelector } from 'react-redux';
+import InputMask from 'react-input-mask';
+import { useDispatch, useSelector } from 'react-redux';
+import updateDataAC from '../../redux/actionCreators/updateDataAC';
 
 function UserCabinet() {
   const { user } = useSelector((state) => state.user);
-  const [number, setNumber] = useState(null)
-  const [editInfoMessage, setEditInfoMessage] = useState(null)
+  const [number, setNumber] = useState(null);
+  const [editInfoMessage, setEditInfoMessage] = useState(null);
   const [editPassMessage, setEditPassMessage] = useState(null);
+  const dispatch = useDispatch();
 
   async function handleSubmitInfo(e) {
     e.preventDefault();
@@ -21,14 +23,15 @@ function UserCabinet() {
       orderEntrance: e.target.orderEntrance.value,
       orderFloor: e.target.orderFloor.value,
       orderFlat: e.target.orderFlat.value
-    }
+    };
     const result = await fetch('/api/edit_user_info', {
       method: 'POST',
       body: JSON.stringify(userInfo),
       headers: { 'Content-Type': 'application/json' },
     });
-    const message = await result.json()
-    setEditInfoMessage(message)
+    const message = await result.json();
+    dispatch(updateDataAC(userInfo));
+    setEditInfoMessage(message);
   }
 
   async function handleSubmitPassword(e) {
@@ -37,14 +40,14 @@ function UserCabinet() {
       id: user.id,
       password: e.target.password.value,
       passwordConfirm: e.target.passwordRepeat.value,
-    }
+    };
     const result = await fetch('/api/edit_user_pass', {
       method: 'POST',
       body: JSON.stringify(newPassword),
       headers: { 'Content-Type': 'application/json' },
-    })
-    const message = await result.json()
-    setEditPassMessage(message)
+    });
+    const message = await result.json();
+    setEditPassMessage(message);
   }
 
   const userPhone = user && user.phone;
@@ -53,97 +56,106 @@ function UserCabinet() {
       <h3>Личный кабинет</h3>
       <div className="userCab">
         <form onSubmit={handleSubmitInfo}>
-          <h5 className='title'>Ваши данные</h5><br />
+          <h5 className="title">Ваши данные</h5><br />
 
           <label>Имя</label>
           <input
-            name='name'
+            name="name"
             type="text"
-            className='modal_input'
-            defaultValue={user.name} />
+            className="modal_input"
+            defaultValue={user.name}
+          />
 
           <label>Почта</label>
           <input
-            name='email'
+            name="email"
             type="email"
-            className='modal_input'
-            defaultValue={user.email} />
+            className="modal_input"
+            defaultValue={user.email}
+          />
 
           <label>Телефон</label>
 
           <InputMask
             mask="8-(999)-999-99-99"
-            name='tel'
+            name="tel"
             type="tel"
-            className='modal_input'
+            className="modal_input"
             onChange={(e) => setNumber(e.target.value)}
             value={number || user.phone}
           />
 
           <label>Улица</label>
           <input
-            name='orderStreet'
+            name="orderStreet"
             type="text"
-            className='modal_input'
-            defaultValue={user.orderStreet} />
+            className="modal_input"
+            defaultValue={user.orderStreet}
+          />
 
           <label>Дом</label>
           <input
-            name='orderHouse'
+            name="orderHouse"
             type="text"
-            className='modal_input'
-            defaultValue={user.orderHouse} />
+            className="modal_input"
+            defaultValue={user.orderHouse}
+          />
 
           <label>Парадная</label>
           <input
-            name='orderEntrance'
+            name="orderEntrance"
             type="text"
-            className='modal_input'
-            defaultValue={user.orderEntrance} />
+            className="modal_input"
+            defaultValue={user.orderEntrance}
+          />
 
           <label>Этаж</label>
           <input
-            name='orderFloor'
+            name="orderFloor"
             type="text"
-            className='modal_input'
-            defaultValue={user.orderFloor} />
+            className="modal_input"
+            defaultValue={user.orderFloor}
+          />
 
           <label>Квартира</label>
           <input
-            name='orderFlat'
+            name="orderFlat"
             type="text"
-            className='modal_input'
-            defaultValue={user.orderFlat} />
+            className="modal_input"
+            defaultValue={user.orderFlat}
+          />
 
           {editInfoMessage && (<p>{editInfoMessage.message}</p>)}
 
-          <button type='submit' className='btn modal_button' >сохранить</button>
+          <button type="submit" className="btn modal_button">сохранить</button>
         </form>
 
         <form className="formPass" onSubmit={handleSubmitPassword}>
-          <h5 className='title'>Изменить пароль</h5><br />
+          <h5 className="title">Изменить пароль</h5><br />
           <label>Пароль</label>
           <input
-            name='password'
+            name="password"
             type="password"
-            className='modal_input'
-            placeholder="новый пароль" />
+            className="modal_input"
+            placeholder="новый пароль"
+          />
 
           <label>Повторите пароль</label>
           <input
-            name='passwordRepeat'
+            name="passwordRepeat"
             type="password"
-            className='modal_input'
-            placeholder="Повторите пароль" />
+            className="modal_input"
+            placeholder="Повторите пароль"
+          />
 
           {editPassMessage && (<p>{editPassMessage.message}</p>)}
 
-          <button type='submit' className='btn modal_button' >сохранить</button>
+          <button type="submit" className="btn modal_button">сохранить</button>
         </form>
 
       </div>
     </>
-  )
+  );
 }
 
-export default UserCabinet
+export default UserCabinet;

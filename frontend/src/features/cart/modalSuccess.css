@@ -17,7 +17,7 @@
     height: 0;
     display: none;
   }
-  .modal_body{
+  .cartSuccessModalBody{
     width: min-content;
     margin: auto;
     background-color: white;

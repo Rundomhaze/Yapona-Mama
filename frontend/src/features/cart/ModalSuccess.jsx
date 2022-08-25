@@ -7,7 +7,7 @@ function ModalSuccess({ isOpen, closeModal }) {
 
   return (
     <div className={`modal_wrapper ${isOpen ? 'open' : 'close'} hard`}>
-      <div className="modal_body">
+      <div className="modal_body cartSuccessModalBody">
         <span className="modalMessage">Заказ успешно оформлен!</span>
         <button 
           onClick={() => navigate('/#')} 

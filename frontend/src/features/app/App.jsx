@@ -11,12 +11,11 @@ import AdminCabinet from '../Cabinet/AdminCabinet';
 import UserCabinet from '../Cabinet/UserCabinet';
 import Cart from '../cart/Cart';
 
-
 function App() {
   const dispatch = useDispatch();
-  const { foods, details } = useSelector((state) => state.cart);
+  const { id } = useSelector((state) => state.cart.details);
   const { user } = useSelector((state) => state.user);
-
+  
   useEffect(() => {
     fetch('http://localhost:4000/auth/user', {
       method: 'GET',
@@ -27,17 +26,17 @@ function App() {
       .then((data) => dispatch(regUserAC(data)));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     fetch('/api/cart')
-  //       .then((result) => result.json())
-  //       .then((data) => {
-  //         dispatch({ 
-  //           type: 'LOAD_CART', 
-  //           payload: { foods: data.orderFoods, details: data.orderDetails } });
-  //       });
-  //   }
-  // }, [dispatch, user]);
+  useEffect(() => {
+    if ('id' in user) {
+      fetch('/api/cart')
+        .then((result) => result.json())
+        .then((data) => {
+          dispatch({ 
+            type: 'LOAD_CART', 
+            payload: { foods: data.orderFoods, details: data.orderDetails } });
+        });
+    }
+  }, [dispatch, user, id]);
 
   return (
 

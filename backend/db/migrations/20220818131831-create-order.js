@@ -8,7 +8,6 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       user_id: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
@@ -21,6 +20,9 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       comment: {
+        type: Sequelize.TEXT,
+      },
+      phone: {
         type: Sequelize.TEXT,
       },
       street: {

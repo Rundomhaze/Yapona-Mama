@@ -13,6 +13,13 @@ export default function cartReducer(state = initialState, action) {
         details: action.payload.details,
       };
     }
+    case 'CLEAR_CART': {
+      return { 
+        ...state,
+        foods: [],
+        details: [{ total_price: 0 }],
+      };
+    }
     case 'EDIT_QUANTITY': {
       const { add, order_id, food_id } = action.payload;
       const newFoods = [...state.foods];
@@ -47,13 +54,18 @@ export default function cartReducer(state = initialState, action) {
       };
     }
     case 'COUNT_TOTAL': {
-      let total = 0;
-      state.foods.forEach((food) => {
-        total += food['Food.new_price'] * food.quantity;
-      });
-      const newDetails = [...state.details];
+      const newDetails = { ...state.details };
 
-      newDetails[0].total_price = total;
+      if (state.foods.length > 0) {
+        let total = 0;
+        state.foods.forEach((food) => {
+          total += food['Food.new_price'] * food.quantity;
+        });
+  
+        newDetails.total_price = total;
+      } else {
+        newDetails.total_price = 0;
+      }
 
       return { 
         ...state,

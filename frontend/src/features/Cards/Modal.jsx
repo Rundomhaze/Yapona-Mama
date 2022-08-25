@@ -59,25 +59,25 @@ export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy })
   const dispatch = useDispatch();
 
   const handleAddClick = async (event, roll) => {
-    dispatch({
-      type: 'ADD_FOOD',
-      payload: {
-        roll,
-        order_id: details[0] && details[0].id
-      }
+    dispatch({ 
+      type: 'ADD_FOOD', 
+      payload: { 
+        roll, 
+        order_id: details.id
+      } 
     });
     dispatch({ type: 'COUNT_TOTAL' });
 
-    if (user) {
-      // await fetch('/api/cart', {
-      //   method: 'POST',
-      //   headers: { 'Content-type': 'Application/json' },
-      //   body: JSON.stringify({
-      //     order_id: details[0].id,
-      //     food_id: roll.id,
-      //     total_price: details[0].total_price
-      //   }) 
-      // });
+    if ('id' in user) {
+      fetch('/api/cart', {
+        method: 'POST',
+        headers: { 'Content-type': 'Application/json' },
+        body: JSON.stringify({
+          order_id: details.id,
+          food_id: roll.id,
+          total_price: details.total_price
+        }) 
+      }).then((data) => data);
     }
   };
 

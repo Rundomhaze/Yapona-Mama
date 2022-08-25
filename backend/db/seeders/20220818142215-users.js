@@ -18,6 +18,12 @@ module.exports = {
       name: 'kto-to',
       phone: 88887776655,
       is_admin: false,
+      orderPhone: 88887777777,
+      orderStreet: 'ул. Ленина',
+      orderHouse: '96',
+      orderEntrance: '7',
+      orderFloor: '2',
+      orderFlat: '77',
       createdAt: new Date(),
       updatedAt: new Date(),
     }];

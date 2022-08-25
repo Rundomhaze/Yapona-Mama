@@ -38,6 +38,24 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.BOOLEAN,
     },
+    orderPhone: {
+      type: DataTypes.TEXT,
+    },
+    orderStreet: {
+      type: DataTypes.TEXT,
+    },
+    orderHouse: {
+      type: DataTypes.TEXT,
+    },
+    orderEntrance: {
+      type: DataTypes.TEXT,
+    },
+    orderFloor: {
+      type: DataTypes.TEXT,
+    },
+    orderFlat: {
+      type: DataTypes.TEXT,
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,

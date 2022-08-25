@@ -153,7 +153,7 @@ function Cart() {
                   tabIndex="1"
                   className="orderInput"
                   onChange={(e) => setPhone(e.target.value)}
-                  value={phone || user.orderPhone}
+                  value={phone || user.phone}
                   required
                 />
                 <label className={'orderPhone' in user ? 'active' : ''} htmlFor="phone">Телефон</label>

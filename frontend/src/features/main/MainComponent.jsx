@@ -158,16 +158,13 @@ function MainComponent() {
           <img src={water} alt="" /><br />
           НАПИТКИ
         </div>
-      </div>
-
-      <div className="allcomp">
         <div onClick={(event) => handleClickVeganChili(event, 'chili')} className="iconfood ">
           <img src={chili} alt="" /><br />
-          <p>ОСТРОЕ</p>
+          ОСТРОЕ
         </div>
         <div onClick={(event) => handleClickVeganChili(event, 'vegan')} className="iconfood ">
           <img src={brokolli} alt="" /><br />
-          <p>ВЕГЕТАРИАНСКОЕ</p>
+          ВЕГЕТАРИАНСКОЕ
         </div>
       </div>
                 

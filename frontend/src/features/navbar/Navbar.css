@@ -16,6 +16,7 @@ nav .nav-wrapper {
 }
 
 .brand-logo{
+  cursor: pointer;
   margin-left: 3%
 }
 
@@ -24,6 +25,7 @@ nav .nav-wrapper {
 }
 
 .img-logo{
+  border: solid rgb(255,255,0) 2px;
   width: 2em;
   height: 2em;
   border-radius: 50%;

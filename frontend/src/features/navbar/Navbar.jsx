@@ -41,43 +41,18 @@ function Navbar() {
             <a onClick={(e) => navigate('/')} className="brand-logo"><img src={label} className="img-logo" /></a>
             <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
+
               <li><a onClick={() => navigate('/')}>Меню</a></li>
               <li><a onClick={() => navigate('/sale')}>Акции</a></li>
               <li><a onClick={() => navigate('/delivery')}>Доставка</a></li>
               <li className="cartLi">
                 <a className="waves-effect waves-light cartLink" onClick={() => navigate('/cart')}>
                   <i className="material-icons left cartIcon">shopping_cart</i>
-                  {(total_price > 0) ? (<>{`${total_price} ₽`} </>) : (<>Корзина</>)}
+
+                  {(total_price > 0) ? (<>{total_price + " ₽"} </>) : (<>Корзина</>)}
                 </a>
               </li>
-              {user && !user.id ? (
-                <>
-                  <li><a onClick={() => {
-                    setRegaModal(false);
-                    setLoginModal(true);
-                  }}
-                  >Войти
-                  </a>
-                  </li>
-                  <li><a onClick={() => {
-                    setLoginModal(false);
-                    setRegaModal(true);
-                  }}
-                  >Зарегистрироваться
-                  </a>
-                  </li>
-                </>
-              ) : user.is_admin ? (
-                <>
-                  <li><a onClick={() => navigate('/admin')}>АДМИН КАБИНЕТ</a></li>
-                  <li><a onClick={handleLogout}>Выйти</a></li>
-                </>
-              ) : (
-                <>
-                  <li><a onClick={() => navigate('/user_room')}>Личный кабинет</a></li>
-                  <li><a onClick={handleLogout}>Выйти</a></li>
-                </>
-              )}
+
             </ul>
           </div>
         </nav>
@@ -95,12 +70,6 @@ function Navbar() {
             <li><a>Работаем 11:00 - 04:00 </a></li>
 
             <li><a onClick={() => navigate('/delivery')}>Доставка еды от 45 минут</a></li>
-            
-            {user && user.id ? (
-              <li><a onClick={() => navigate('/user_room')}>Личный кабинет</a></li>
-            ) : (
-              <></>
-            )}
 
             {user && user.name ? (
               <li><a onClick={() => navigate('/user_room')}>Здравствуйте, {user.name} !</a></li>
@@ -113,6 +82,36 @@ function Navbar() {
               </a>
               </li>
             )}
+
+            {user && !user.id ? (
+                <>
+                  <li><a onClick={() => {
+                    setRegaModal(false);
+                    setLoginModal(true);
+                  }}
+                  >Войти
+                      </a>
+                  </li>
+                  <li><a onClick={() => {
+                    setLoginModal(false);
+                    setRegaModal(true);
+                  }}
+                  >Зарегистрироваться
+                      </a>
+                  </li>
+                </>
+              ) : user.status ? (
+                <>
+                  <li><a onClick={handleLogout}>Выйти</a></li>
+                  <li><a onClick={() => navigate('/admin')}>АДМИН КАБИНЕТ</a></li>
+                </>
+              ) : (
+                <>
+                  <li><a onClick={handleLogout}>Выйти</a></li>
+                  <li><a onClick={() => navigate('/user_room')}>Личный кабинет</a></li>
+                </>
+              )}
+            
           </ul>
         </div>
       </nav>

@@ -47,3 +47,9 @@
   font-size: 20px;
   color: black;
 }
+
+.checkIng{
+  display: flex;
+  justify-content: space-around;
+}
+

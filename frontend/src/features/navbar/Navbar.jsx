@@ -30,7 +30,7 @@ function Navbar() {
       .then((data) => {
         dispatch(logoutAC(data));
         dispatch({ type: 'CLEAR_CART' });
-        navigate('/');
+        navigate('/#');
       });
   }
   
@@ -42,6 +42,15 @@ function Navbar() {
             <a onClick={(e) => navigate('/')} className="brand-logo"><img src={label} className="img-logo" /></a>
             <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
+              <li><a onClick={() => navigate('/')}>Меню</a></li>
+              <li><a onClick={() => navigate('/sale')}>Акции</a></li>
+              <li><a onClick={() => navigate('/delivery')}>Доставка</a></li>
+              <li className="cartLi">
+                <a className="waves-effect waves-light cartLink" onClick={() => navigate('/cart')}>
+                  <i className="material-icons left cartIcon">shopping_cart</i>
+                  {(total_price > 0) ? (<>{`${total_price} ₽`} </>) : (<>Корзина</>)}
+                </a>
+              </li>
               {user && !user.id ? (
                 <>
                   <li><a onClick={() => {
@@ -49,36 +58,27 @@ function Navbar() {
                     setLoginModal(true);
                   }}
                   >Войти
-                      </a>
+                  </a>
                   </li>
                   <li><a onClick={() => {
                     setLoginModal(false);
                     setRegaModal(true);
                   }}
                   >Зарегистрироваться
-                      </a>
+                  </a>
                   </li>
                 </>
               ) : user.status ? (
                 <>
-                  <li><a onClick={handleLogout}>Выйти</a></li>
                   <li><a onClick={() => navigate('/admin')}>АДМИН КАБИНЕТ</a></li>
+                  <li><a onClick={handleLogout}>Выйти</a></li>
                 </>
               ) : (
                 <>
-                  <li><a onClick={handleLogout}>Выйти</a></li>
                   <li><a onClick={() => navigate('/user_room')}>Личный кабинет</a></li>
+                  <li><a onClick={handleLogout}>Выйти</a></li>
                 </>
               )}
-              <li><a onClick={() => navigate('/')}>Меню</a></li>
-              <li><a onClick={() => navigate('/sale')}>Акции</a></li>
-              <li><a onClick={() => navigate('/delivery')}>Доставка</a></li>
-              <li className="cartLi">
-                <a className="waves-effect waves-light cartLink" onClick={() => navigate('/cart')}>
-                  <i className="material-icons left cartIcon">shopping_cart</i>
-                  {(total_price > 0) ? (<>{total_price + " ₽"} </>) : (<>Корзина</>)}
-                </a>
-              </li>
             </ul>
           </div>
         </nav>
@@ -110,7 +110,7 @@ function Navbar() {
                 setRegaModal(true);
               }}
               >Здравствуйте, гость!
-                  </a>
+              </a>
               </li>
             )}
           </ul>

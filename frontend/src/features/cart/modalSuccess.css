@@ -20,13 +20,14 @@
   .modal_body{
     width: min-content;
     margin: auto;
-    background-color: rgb(187, 181, 181);
+    background-color: white;
     margin-top: 10%;
     padding: 50px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
+    white-space: nowrap; 
   }
   .modal_close{
     width: 100%;
@@ -42,3 +43,11 @@
     background-color: rgb(65, 58, 58) !important;
   }
   
+  .modalMessage {
+    margin-bottom: 50px;
+    font-size: x-large;
+  }
+
+  .btnOrder {
+    border-radius: 30px !important;
+}

@@ -65,11 +65,11 @@ function Onecard({ onefood, spicy, vegan }) {
               </div>
             )}
           </div>
-          <span className="titlecard titlename" style={{ color: 'green' }}>{onefood.title}</span>
+          <span className="titlecard titlename" style={{ color: 'black', 'font-weight': '300'}}>{onefood.title}</span>
           <br />
-          {onefood.old_price && <s style={{ color: 'red' }} className="titlecard price">{onefood.old_price} ₽</s>}
+          {onefood.old_price && <s style={{ color: 'gray', 'font-size': 'medium' }} className="titlecard price">{onefood.old_price} ₽</s>}
           <br />
-          <span className="titlecard price" style={{ color: 'green' }}> {onefood.new_price} ₽</span>
+          <span className="titlecard price" style={{ color: 'red', 'font-weight': '500' }}> {onefood.new_price} ₽</span>
           <br />
         </div>
 

@@ -39,7 +39,6 @@ function App() {
   }, [dispatch, user, id]);
 
   return (
-
     <>
       <Routes>
         <Route element={<Navbar />}>

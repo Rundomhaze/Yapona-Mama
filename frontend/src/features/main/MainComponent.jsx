@@ -10,6 +10,8 @@ import wok from '../../иконки/icons8-wok-100.png';
 import sous from '../../иконки/icons8-соусы-100.png';
 import sweet from '../../иконки/icons8-десерт-100.png';
 import water from '../../иконки/icons8-кофе-с-собой-100.png';
+import chili from '../../иконки/icons8-перец-чили-100-main.png';
+import brokolli from '../../иконки/icons8-брокколи-100-main.png';
 
 import Carusel from '../../features/carusel/Carusel';
 import Hits from './Hits';
@@ -37,7 +39,8 @@ function MainComponent() {
 
   const [visibleType, setVisibleType] = useState(false)
   const [visibleIngr, setVisibleIngr] = useState(false)
-  
+  const [visibleChiliVegan, setVisibleChiliVegan] = useState(false)
+
 
   useEffect(() => {
     if (id > 0) {
@@ -51,9 +54,10 @@ function MainComponent() {
 
   const handleChangeIngr = (event) => {
     setVisibleType(false)
+    setVisibleChiliVegan(false)
     setVisibleIngr(true)
     setIngr(event.target.value)
-  
+
     fetch(`/ingredients/filter_food/${event.target.value}`, { method: 'GET' })
       .then((result) => result.json())
       .then((data) => {
@@ -65,14 +69,58 @@ function MainComponent() {
     setId(id)
     setIngr('')
     setVisibleIngr(false)
+    setVisibleChiliVegan(false)
     setVisibleType(true)
   }
 
+  const handleClickVeganChili = (event, type) => {
+    setIngr('')
+    setVisibleType(false)
+    setVisibleIngr(false)
+    setVisibleChiliVegan(true)
 
+    fetch(`/fil/filter_chili_vegan_food/${type}`, {method: 'GET'})
+      .then((result) => result.json())
+      .then((data) => {
+        dispatch(filterFoodAC(data))
+      })
+  }
 
   return (
     <>
       <Carusel />
+
+      <div className='checkIng'>
+        {/* <FilterFood setFood={setFood} /> */}
+        <Box sx={{ minWidth: 240 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Поиск по ингридиентам</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={ingr}
+              label="Поиск по ингридиентам"
+              onChange={(event) => {
+                handleChangeIngr(event)
+                setFood(null)
+              }}>
+              <MenuItem value={'угорь'}>Угорь</MenuItem>
+              <MenuItem value={'лосось'}>Лосось</MenuItem>
+              <MenuItem value={'окунь'}>Окунь</MenuItem>
+              <MenuItem value={'креветка'}>Креветка</MenuItem>
+              <MenuItem value={'семга'}>Семга</MenuItem>
+              <MenuItem value={'кальмар'}>Кальмар</MenuItem>
+              <MenuItem value={'тунец'}>Тунец</MenuItem>
+              <MenuItem value={'курица'}>Курица</MenuItem>
+              <MenuItem value={'краб'}>Краб</MenuItem>
+              <MenuItem value={'чука'}>Чука</MenuItem>
+              <MenuItem value={'омлет'}>Омлет</MenuItem>
+              <MenuItem value={'сыр'}>Сыр</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      </div>
+      
       <div className="allcomp">
         <div onClick={(event) => handleClickType(event, 1)} className="iconfood ">
           <img src={rolls} alt="" /> <br />
@@ -112,40 +160,22 @@ function MainComponent() {
         </div>
       </div>
 
-      <div className='checkIng'>
-        {/* <FilterFood setFood={setFood} /> */}
-        <Box sx={{ minWidth: 240 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Поиск по ингридиентам</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={ingr}
-            label="Поиск по ингридиентам"
-            onChange={(event) => {
-              handleChangeIngr(event)
-              setFood(null)}}>
-            <MenuItem value={'угорь'}>Угорь</MenuItem>
-            <MenuItem value={'лосось'}>Лосось</MenuItem>
-            <MenuItem value={'окунь'}>Окунь</MenuItem>
-            <MenuItem value={'креветка'}>Креветка</MenuItem>
-            <MenuItem value={'семга'}>Семга</MenuItem>
-            <MenuItem value={'кальмар'}>Кальмар</MenuItem>
-            <MenuItem value={'тунец'}>Тунец</MenuItem>
-            <MenuItem value={'курица'}>Курица</MenuItem>
-            <MenuItem value={'краб'}>Краб</MenuItem>
-            <MenuItem value={'чука'}>Чука</MenuItem>
-            <MenuItem value={'омлет'}>Омлет</MenuItem>
-            <MenuItem value={'сыр'}>Сыр</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
+      <div className="allcomp">
+        <div onClick={(event) => handleClickVeganChili(event, 'chili')} className="iconfood ">
+          <img src={chili} alt="" /><br />
+          <p>ОСТРОЕ</p>
+        </div>
+        <div onClick={(event) => handleClickVeganChili(event, 'vegan')} className="iconfood ">
+          <img src={brokolli} alt="" /><br />
+          <p>ВЕГЕТАРИАНСКОЕ</p>
+        </div>
       </div>
+                
+      {visibleType ? (allFood && <CardList allFood={allFood} />) : (<></>)}
 
-      {visibleType ? ( allFood && <CardList allFood={allFood} />) : (<></>)}
-     
-      
       {visibleIngr ? (filterFood && filterFood.length > 0 ? <CardList allFood={filterFood} /> : null) : (<></>)}
+
+      {visibleChiliVegan ? (filterFood && filterFood.length > 0 ? <CardList allFood={filterFood} /> : null) : (<></>)}
 
 
       <Hits />

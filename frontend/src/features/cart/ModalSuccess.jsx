@@ -8,9 +8,12 @@ function ModalSuccess({ isOpen, closeModal }) {
   return (
     <div className={`modal_wrapper ${isOpen ? 'open' : 'close'} hard`}>
       <div className="modal_body">
-        <div className="modal_close" onClick={() => navigate('/')}>&times;</div>
-        <h3>Заказ успешно оформлен</h3>
-        <button onClick={() => navigate('/')} className="waves-effect waves-light btn-large">Ok</button>
+        <span className="modalMessage">Заказ успешно оформлен!</span>
+        <button 
+          onClick={() => navigate('/#')} 
+          className="waves-effect waves-light btn-large btnOrder"
+        >На главную
+        </button>
       </div>
     </div>
   );

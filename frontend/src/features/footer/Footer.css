@@ -16,6 +16,7 @@ main page-footer{
   width: 8em;
   height: 8em;
   border-radius: 50%;
+  border: solid rgb(255,255,0) 1px;
 }
 
 .deliveryClub {

@@ -11,6 +11,7 @@ function Navbar() {
   const [regaModal, setRegaModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const { user } = useSelector((state) => state.user);
+  const { total_price } = useSelector((state) => state.cart.details);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -32,13 +33,12 @@ function Navbar() {
         navigate('/');
       });
   }
-  console.log(user);
   return (
     <>
       <div className="divnavbar">
         <nav>
           <div className="nav-wrapper sticky-nav">
-            <a href="/" className="brand-logo"><img src={label} className="img-logo" /></a>
+            <a onClick={(e) => navigate('/')} className="brand-logo"><img src={label} className="img-logo" /></a>
             <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
               {user && !user.id ? (
@@ -61,44 +61,50 @@ function Navbar() {
               ) : user.is_admin ? (
                 <>
                   <li><a onClick={handleLogout}>Выйти</a></li>
-                  <li><a href="/admin">АДМИН КАБИНЕТ</a></li>
+                  <li><a onClick={() => navigate('/admin')}>АДМИН КАБИНЕТ</a></li>
                 </>
               ) : (
                 <>
                   <li><a onClick={handleLogout}>Выйти</a></li>
-                  <li><a href="/user_room">Личный кабинет</a></li>
+                  <li><a onClick={() => navigate('/user_room')}>Личный кабинет</a></li>
                 </>
               )}
 
-              <li><a href="/">Меню</a></li>
-              <li><a href="/sale">Акции</a></li>
-              <li><a onClick={() => navigate('/cart')}>Корзина</a></li>
-              <li><a href="/delivery">Доставка</a></li>
+              <li><a onClick={() => navigate('/')}>Меню</a></li>
+              <li><a onClick={() => navigate('/sale')}>Акции</a></li>
+              <li><a onClick={() => navigate('/delivery')}>Доставка</a></li>
+              <li className="cartLi">
+                <a className="waves-effect waves-light cartLink" onClick={() => navigate('/cart')}>
+                  <i className="material-icons left cartIcon">shopping_cart</i>
+                  {(total_price > 0) ? (<>{total_price + " ₽"} </>) : (<>Корзина</>)}
+                </a>
+              </li>
             </ul>
           </div>
         </nav>
 
         <ul className="sidenav" id="mobile-demo">
-          <li><a href="/">Меню</a></li>
-          <li><a href="/sale">Акции</a></li>
-          <li><a href="/">Корзина</a></li>
-          <li><a href="/delivery">Доставка</a></li>
+          <li><a onClick={() => navigate('/')}>Меню</a></li>
+          <li><a onClick={() => navigate('/sale')}>Акции</a></li>
+          <li><a onClick={() => navigate('/cart')}>Корзина</a></li>
+          <li><a onClick={() => navigate('/delivery')}>Доставка</a></li>
         </ul>
       </div>
       <nav>
         <div className="divnavbar2">
           <ul id="nav-mobile" className="">
             <li><a>Работаем 11:00 - 04:00 </a></li>
-            <li><a href="/delivery">Доставка еды от 45 минут</a></li>
 
+            <li><a onClick={() => navigate('/delivery')}>Доставка еды от 45 минут</a></li>
+            
             {user && user.id ? (
-              <li><a href="/user_room">Личный кабинет</a></li>
+              <li><a onClick={() => navigate('/user_room')}>Личный кабинет</a></li>
             ) : (
               <></>
             )}
 
             {user && user.name ? (
-              <li><a href="/user_room">Здравствуйте, {user.name} !</a></li>
+              <li><a onClick={() => navigate('/user_room')}>Здравствуйте, {user.name} !</a></li>
             ) : (
               <li><a onClick={() => {
                 setLoginModal(false);

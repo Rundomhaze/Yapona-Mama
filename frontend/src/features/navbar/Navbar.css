@@ -29,4 +29,15 @@ nav .nav-wrapper {
   border-radius: 50%;
 }
 
+.cartLink {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start;
+  flex-wrap: nowrap !important;
+  white-space: nowrap; 
+  font-size: large;
+}
 
+.cartIcon {
+  color: yellow !important;
+}

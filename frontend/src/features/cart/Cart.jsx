@@ -71,29 +71,35 @@ function Cart() {
 
   const handleOrderSubmit = async (event) => {
     event.preventDefault();
-    setShowModal(true);
+    if (details.total_price > 0) {
+      setShowModal(true);
 
-    fetch('/api/order', {
-      method: 'POST',
-      headers: { 'Content-type': 'Application/json' },
-      body: JSON.stringify({
-        order_id: details.id,
-        total_price: details.total_price,
-        comment: event.target.comment.value,
-        phone: event.target.phone.value,
-        street: event.target.street.value,
-        house: event.target.house.value,
-        entrance: event.target.entrance.value,
-        floor: event.target.floor.value,
-        flat: event.target.flat.value,
-        foods,
-      }) 
-    });
-    dispatch({ type: 'CLEAR_CART' });
+      fetch('/api/order', {
+        method: 'POST',
+        headers: { 'Content-type': 'Application/json' },
+        body: JSON.stringify({
+          order_id: details.id,
+          total_price: details.total_price,
+          comment: event.target.comment.value,
+          phone: event.target.phone.value,
+          street: event.target.street.value,
+          house: event.target.house.value,
+          entrance: event.target.entrance.value,
+          floor: event.target.floor.value,
+          flat: event.target.flat.value,
+          foods,
+        }) 
+      });
+      dispatch({ type: 'CLEAR_CART' });
+    }
   };
 
   return (
     <>
+      <ModalSuccess 
+        isOpen={showModal}
+        closeModal={() => setShowModal(false)}
+      />
       <div className="container">
         <h4 className="cart-header">Корзина</h4>
         <div className="collection-item header">
@@ -111,11 +117,11 @@ function Cart() {
                 {food['Food.title']}
               </div>
               <div className="foodQuantityItem">
-                <a href="minus" onClick={(event) => handleQuantityClick(event, false, food.order_id, food.food_id, index)}>
+                <a href="minus" className="minus" onClick={(event) => handleQuantityClick(event, false, food.order_id, food.food_id, index)}>
                   <i className="Small material-icons">remove</i>
                 </a>
-                <div>{food.quantity}</div>
-                <a href="plus" onClick={(event) => handleQuantityClick(event, true, food.order_id, food.food_id, index)}>
+                <div className="counter">{food.quantity}</div>
+                <a href="plus" className="plus" onClick={(event) => handleQuantityClick(event, true, food.order_id, food.food_id, index)}>
                   <i className="Small material-icons">add</i>
                 </a>
               </div>
@@ -184,15 +190,11 @@ function Cart() {
               </div>
             </div>
             <div className="collection-item footer order">
-              <button type="submit" className="waves-effect waves-light btn-large">Оформить</button>
+              <button type="submit" className="waves-effect waves-light btn-large btnOrder">Оформить</button>
             </div>
           </form>
         </div>
       </div>
-      <ModalSuccess 
-        isOpen={showModal}
-        closeModal={() => setShowModal(false)}
-      />
     </>
   );
 }

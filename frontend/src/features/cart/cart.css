@@ -5,6 +5,10 @@
     font-weight: 400;
 }
 
+.with-header {
+    box-shadow: 0 0 5px rgba(206, 206, 206, 0.5);
+}
+
 .header, .footer {
     font-size: medium;
 }
@@ -13,8 +17,6 @@
     font-size: xx-large;  
 }
 /* Заголовок таблицы */
-
-
 .collection-item.header{
     margin-bottom: 20px;
 }
@@ -51,9 +53,11 @@
 }
 
     .foodQuantityItem * {
-        width: 8%;
+        /* width: 8%;
         text-align: center;
-        align-items: center;
+        align-items: center; */
+        margin-left: 3px;
+        margin-right: 3px;
     }
 
     .material-icons {
@@ -93,9 +97,25 @@
     margin-top: 20px;
 }
 
+.collection-item * {
+    display: flex;
+    align-items: center;
+}
+
 .order {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top: 50px !important;
+}
+
+.counter, .minus, .plus {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-content: center !important;
+}
+
+.btnOrder {
+    border-radius: 30px !important;
 }

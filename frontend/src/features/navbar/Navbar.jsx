@@ -13,7 +13,7 @@ function Navbar() {
   const { user } = useSelector((state) => state.user);
   const { total_price } = useSelector((state) => state.cart.details);
   const dispatch = useDispatch();
- 
+
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -30,10 +30,9 @@ function Navbar() {
       .then((data) => {
         dispatch(logoutAC(data));
         dispatch({ type: 'CLEAR_CART' });
-        navigate('/');
+        navigate('/#');
       });
   }
-  
   return (
     <>
       <div className="divnavbar">
@@ -42,7 +41,6 @@ function Navbar() {
             <a onClick={(e) => navigate('/')} className="brand-logo"><img src={label} className="img-logo" /></a>
             <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
-              
 
               <li><a onClick={() => navigate('/')}>Меню</a></li>
               <li><a onClick={() => navigate('/sale')}>Акции</a></li>
@@ -50,9 +48,11 @@ function Navbar() {
               <li className="cartLi">
                 <a className="waves-effect waves-light cartLink" onClick={() => navigate('/cart')}>
                   <i className="material-icons left cartIcon">shopping_cart</i>
+
                   {(total_price > 0) ? (<>{total_price + " ₽"} </>) : (<>Корзина</>)}
                 </a>
               </li>
+
             </ul>
           </div>
         </nav>
@@ -68,6 +68,7 @@ function Navbar() {
         <div className="divnavbar2">
           <ul id="nav-mobile" className="">
             <li><a>Работаем 11:00 - 04:00 </a></li>
+
             <li><a onClick={() => navigate('/delivery')}>Доставка еды от 45 минут</a></li>
 
             {user && user.name ? (
@@ -78,7 +79,7 @@ function Navbar() {
                 setRegaModal(true);
               }}
               >Здравствуйте, гость!
-                  </a>
+              </a>
               </li>
             )}
 

@@ -79,6 +79,8 @@ export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy })
         }) 
       }).then((data) => data);
     }
+
+    setOpen(false);
   };
 
   return (

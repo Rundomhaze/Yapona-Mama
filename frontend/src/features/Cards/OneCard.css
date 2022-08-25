@@ -1,7 +1,8 @@
 .redbtn {
   position: absolute !important;
   bottom: 5px !important;
-  left: 83% !important
+  left: 83% !important;
+  display: flex;
 }
 
 
@@ -17,6 +18,7 @@
 .onecard {
   /* position: relative !important; */
   height: 400px;
+  width: 384px !important;
   border-radius: 5px !important;
   margin-bottom: 20px;
 
@@ -144,4 +146,22 @@
   font-weight: 600;
   font-size: 14px;
 
+}
+
+.circleQuantity {
+  background-color: red;
+  color: white;
+  font-weight: 500;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  top: -5px;
+  left: -65px;
+  z-index: 1;
+  border: 2px solid white;
 }

@@ -97,7 +97,7 @@ export default function ModalUnstyledDemo({ open, setOpen, roll, vegan, spicy })
         <Box sx={style} className="modalcard">
           <div className="flexDiv">
 
-            <div className="close"><a onClick={() => setOpen(false)}>❌</a></div>
+            <div className="close"><a style={{cursor: 'pointer'}} onClick={() => setOpen(false)}>❌</a></div>
 
             <div className="flex">
               <img src={roll.photo} alt="" className="materialboxed" />

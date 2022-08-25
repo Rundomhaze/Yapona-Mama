@@ -34,6 +34,7 @@ function App() {
           dispatch({ 
             type: 'LOAD_CART', 
             payload: { foods: data.orderFoods, details: data.orderDetails } });
+          dispatch({ type: 'COUNT_TOTAL' });
         });
     }
   }, [dispatch, user, id]);

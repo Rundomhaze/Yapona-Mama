@@ -30,7 +30,7 @@ function Navbar() {
       .then((data) => {
         dispatch(logoutAC(data));
         dispatch({ type: 'CLEAR_CART' });
-        navigate('/#');
+        navigate('/');
       });
   }
   return (

@@ -70,16 +70,14 @@ authRouter.post('/registration', async (req, res) => {
       password: await bcrypt.hash(password, 5),
       name,
       phone: currPhone,
+      orderPhone: currPhone,
     });
     // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
     req.session.userId = user.id;
     res.json({
       auth: true,
       message: 'Зарегистрируйтесь или войдите в аккаунт',
-      user: {
-        id: user.id,
-        name: user.name,
-      },
+      user,
     });
   } catch (e) {
     res.json({ message: 'Нет доступа к базе данных' });
@@ -104,12 +102,7 @@ authRouter.post('/login', async (req, res) => {
       res.json({
         auth: true,
         message: 'Зарегистрируйтесь или войдите в аккаунт',
-        user: {
-          id: existingUser.id,
-          name: existingUser.name,
-          is_admin: existingUser.is_admin,
-
-        },
+        user: existingUser,
       });
     }
   } catch (e) {

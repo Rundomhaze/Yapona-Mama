@@ -12,6 +12,7 @@ const hitRouter = require('./routes/api/Hit.api.route');
 const editUserRouter = require('./routes/api/api.editUser.route');
 const filterFoodRouter = require('./routes/api/filterFood.api.route');
 const filterChiliVeganFoodRouter = require('./routes/api/filterChiliVeganFood.router');
+const UploadFileRouter = require('./routes/api/upload.api');
 
 
 const app = express();
@@ -27,6 +28,7 @@ app.use('/api', hitRouter);
 app.use('/api', editUserRouter);
 app.use('/ingredients', filterFoodRouter);
 app.use('/fil', filterChiliVeganFoodRouter);
+app.use('/upload/photo', UploadFileRouter);
 
 
 app.listen(PORT, async () => {

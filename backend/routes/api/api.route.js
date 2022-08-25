@@ -8,26 +8,26 @@ const {
 } = require('../../db/models');
 
 const token = '5400872641:AAGRVwB_vpkDszos-j5_wOhClNAY1FZssdI';
-// const bot = new TelegramBot(token, { polling: true });
+const bot = new TelegramBot(token, { polling: true });
 
-// bot.onText(/\/start/, async (msg, match) => {
-//   const chatId = msg.chat.id;
-//   const chat = await TelegramChat.findOne({
-//     raw: true,
-//     where: {
-//       chatId,
-//     },
-//   });
+bot.onText(/\/start/, async (msg, match) => {
+  const chatId = msg.chat.id;
+  const chat = await TelegramChat.findOne({
+    raw: true,
+    where: {
+      chatId,
+    },
+  });
 
-//   if (chat) {
-//     console.log('Telegram Bot: Allready registred.');
-//     bot.sendMessage(chatId, 'Хм, Вы уже зарегистрированы...');
-//   } else {
-//     TelegramChat.create({ chatId });
-//     console.log('Telegram Bot: New user registred.');
-//     bot.sendMessage(chatId, 'Поздравляем! \nТеперь вы будете получать сообщения с новыми заказами.');
-//   }
-// });
+  if (chat) {
+    console.log('Telegram Bot: Allready registred.');
+    bot.sendMessage(chatId, 'Хм, Вы уже зарегистрированы...');
+  } else {
+    TelegramChat.create({ chatId });
+    console.log('Telegram Bot: New user registred.');
+    bot.sendMessage(chatId, 'Поздравляем! \nТеперь вы будете получать сообщения с новыми заказами.');
+  }
+});
 function formatDate(date) {
   const d = date;
   let month = `${d.getMonth() + 1}`;
@@ -253,7 +253,7 @@ router
     const chats = await TelegramChat.findAll();
     if (chats.length > 0) {
       chats.forEach((chat) => {
-        // bot.sendMessage(chat.chatId, message, { parse_mode: 'markdown' });
+        bot.sendMessage(chat.chatId, message, { parse_mode: 'markdown' });
       });
     } else {
       console.log('Telegram Bot: No registred chats.');

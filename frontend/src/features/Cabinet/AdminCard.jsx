@@ -27,7 +27,8 @@ function AdminCard({ el }) {
       </div>
       <input type="text" value={myvaluetitle || el.title} onChange={((event) => setMyvaluetitle(event.target.value))} />
       <input type="text" value={myvaluedesc || el.description} onChange={((event) => setMyvaluedesc(event.target.value))} />
-      <button>Сохранить</button> <button>Обновить фото</button> <button onClick={handleDelete}>Удалить</button>
+      {/* <button>Сохранить</button> <button>Обновить фото</button>   УБИРАЮ ЭТИ КНОПКИ ТАК КАК ИЗМЕНЕНИЕ НЕ СДЕЛАНО*/}
+      <button onClick={handleDelete}>Удалить</button>
     </form>
   );
 

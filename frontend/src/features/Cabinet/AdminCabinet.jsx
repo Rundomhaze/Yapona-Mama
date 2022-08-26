@@ -16,10 +16,14 @@ function AdminCabinet() {
       .then((data) =>
         dispatch(actionCreator.loadFoods(data))
       );
-  }, []); 
+  }, []);
+  console.log('FILTER-=-=-=--=--=-=--=', filterfood);
+  console.log('SELECT-=-=-=--=--=-=--=', selectfood);
 
-  useEffect(() =>
-    filterfood && setSelectfood(filterfood), [filterfood]);
+  useEffect(() => {
+    filterfood && setSelectfood(filterfood);
+  }, [filterfood]);
+
   async function handleSubmit(event) {
     event.preventDefault();
     const fetchFood = {
@@ -30,6 +34,9 @@ function AdminCabinet() {
       new_price: event.target.new_price.value,
       is_vegan: event.target.is_vegan.checked,
       is_spicy: event.target.is_spicy.checked,
+      typetitle: event.target.typetitle.value,
+      subtypetitle: event.target.subtypetitle.value,
+
     };
     const result = await fetch('/api/add', {
       method: 'POST',
@@ -39,8 +46,10 @@ function AdminCabinet() {
       },
     });
     const newFood = await result.json();
+    
     dispatch(actionCreator.addFood(newFood));
     event.target.reset();
+    setSelectfood(filterfood);
   }
   async function hundleUploadPhoto(e) {
     try {
@@ -71,8 +80,10 @@ function AdminCabinet() {
             <input type="file" name="photo" placeholder="Добавьте фотографию" onChange={hundleUploadPhoto} />
             <input type="text" name="title" placeholder="Наименование Товара" />
             <input type="text" name="description" placeholder="Состав" />
-            <input type="text" name="weight" placeholder="Вес (граммы)" />
-            <input type="text" name="new_price" placeholder="Цена" />
+            <input type="number" name="weight" placeholder="Вес (граммы)" />
+            <input type="number" name="new_price" placeholder="Цена" />
+            <input type="text" name="typetitle" placeholder="Тип " />
+            <input type="text" name="subtypetitle" placeholder="Подтип (если есть)" />
 
             <h6>Веганское?</h6>
             <input type="checkbox" name="is_vegan" className="checkboxIs" />
@@ -96,13 +107,13 @@ function AdminCabinet() {
           onChange={(e) => {
             e.target.value === 'all'
               ? setSelectfood(filterfood)
-              : setSelectfood(filterfood.filter((el) => el['Type.title'] === e.target.value));
+              : setSelectfood(filterfood.filter((el) => el['Type.id'] === Number(e.target.value)));
           }}
         >
 
           <option value="all">Все</option>
           {types && types.map((el) =>
-            <option key={el.id} value={el.title}>{el.title}</option>)}
+            <option key={el.id} value={el.id}>{el.title}</option>)}
 
         </select>
       </form>

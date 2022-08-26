@@ -51,8 +51,8 @@
 }
 
 .modalcard {
-  height: 85vh !important;
-  width: 50vw !important;
+  height: 70vh !important;
+  width: 45vw !important;
   border-radius: 30px;
 }
 
@@ -167,5 +167,5 @@
   top: -5px;
   left: -65px;
   z-index: 1;
-  border: 2px solid white;
+  border: 1px solid rgb(5, 5, 5);
 }

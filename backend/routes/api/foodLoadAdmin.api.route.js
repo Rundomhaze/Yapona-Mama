@@ -23,8 +23,18 @@ foodLoadAdminRouter.get('/load', async (req, res) => {
 foodLoadAdminRouter.post('/add', async (req, res) => {
   try {
     const {
-      photo, title, description, weight, new_price, is_vegan, is_spicy,
+      photo, title, description, weight, new_price, is_vegan, is_spicy, typetitle, subtypetitle,
     } = req.body;
+    const typeid = await Type.findOne({
+      where: {
+        title: typetitle,
+      },
+    });
+    const subtypeid = await Subtype.findOne({
+      where: {
+        title: subtypetitle,
+      },
+    });
     const newFood = await Food.create({
       photo,
       title,
@@ -33,8 +43,17 @@ foodLoadAdminRouter.post('/add', async (req, res) => {
       new_price,
       is_vegan,
       is_spicy,
+      type_id: typeid.id,
+      subtype_id: subtypeid.id,
     });
-    return res.status(201).json(newFood);
+    const addedFood = await Food.findOne({
+      where: {
+        id: newFood.id,
+      },
+      raw: true,
+      include: [{ model: Subtype }, { model: Type }],
+    });
+    return res.status(201).json(addedFood);
   } catch (err) {
     res.json(err.message);
   }

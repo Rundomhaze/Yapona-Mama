@@ -100,7 +100,7 @@ function Navbar() {
                       </a>
                   </li>
                 </>
-              ) : user.status ? (
+              ) : user.is_admin ? (
                 <>
                   <li><a onClick={handleLogout}>Выйти</a></li>
                   <li><a onClick={() => navigate('/admin')}>АДМИН КАБИНЕТ</a></li>

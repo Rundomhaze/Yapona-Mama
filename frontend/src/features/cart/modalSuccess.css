@@ -1,0 +1,53 @@
+.modal_wrapper{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 3;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: black(0,0,0, .2);
+    backdrop-filter: blur(10px);
+  }
+
+  .modal_wrapper.open{
+    height: 100%;
+  }
+  .modal_wrapper.close{
+    height: 0;
+    display: none;
+  }
+  .cartSuccessModalBody{
+    width: min-content;
+    margin: auto;
+    background-color: white;
+    margin-top: 10%;
+    padding: 50px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: nowrap; 
+  }
+  .modal_close{
+    width: 100%;
+    text-align: right;
+    margin-top: -30px;
+    font-size: 40px;
+    color: gray;
+    cursor: pointer;
+  }
+  
+  .modal_button {
+    margin-top: 20px;
+    background-color: rgb(65, 58, 58) !important;
+  }
+  
+  .modalMessage {
+    margin-bottom: 50px;
+    font-size: x-large;
+  }
+
+  .btnOrder {
+    border-radius: 30px !important;
+}

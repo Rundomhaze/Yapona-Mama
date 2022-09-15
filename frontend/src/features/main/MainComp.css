@@ -1,0 +1,64 @@
+.allcomp {
+  display: flex;
+  justify-content: center;
+  align-content: space-around;
+  margin-bottom: 4%;
+  z-index: 3;
+  width: 85%;
+  gap: 92px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+
+.iconfood {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 132px;
+  /* display: inline-block !important; */
+  overflow: hidden !important;
+  /*Скрываем всё за контуром */
+  transition: 1s;
+}
+
+.iconfood :hover {
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.activeClassTakeIt {
+  padding: 10px;
+  /* border: solid rgb(153,153,153) 2px; */
+  box-shadow: 0 0 20px rgba(24, 23, 23, 0.5);
+  border-radius: 15px;
+  background-color: rgb(233, 224, 224);
+  opacity: 0.8;
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.upBtn * {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  font-size: 20px;
+  color: black;
+}
+
+.checkIng{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2%;
+}
+

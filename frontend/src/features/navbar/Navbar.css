@@ -1,0 +1,45 @@
+nav .nav-wrapper {
+  background-color: rgb(102,102,102);
+  font-size: 120%;
+}
+
+.divnavbar {
+  position: sticky; 
+  top: 0;
+  z-index: 4;
+}
+
+.divnavbar2 {
+  background-color: rgb(153,153,153);
+  display: flex;
+  justify-content: space-around;
+}
+
+.brand-logo{
+  cursor: pointer;
+  margin-left: 3%
+}
+
+.right {
+  font-size: 120% !important;
+}
+
+.img-logo{
+  border: solid rgb(255,255,0) 1px;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+}
+
+.cartLink {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start;
+  flex-wrap: nowrap !important;
+  white-space: nowrap; 
+  font-size: large;
+}
+
+.cartIcon {
+  color: yellow !important;
+}

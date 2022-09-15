@@ -1,0 +1,28 @@
+.delivery{
+  margin-top: 7%;
+}
+
+h3{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+
+.container{
+  padding: 3%;
+  font-size: 130%;
+}
+
+.apimap {
+  display: flex;
+  border: solid rgb(214, 186, 186) 1px;
+  flex-direction: column;
+  align-content: space-between;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.map {
+  width: 80%;
+  height: 600px;
+}

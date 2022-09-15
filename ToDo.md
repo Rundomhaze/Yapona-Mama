@@ -1,2 +1,0 @@
-#ToDo
-ESLINT_NO_DEV_ERRORS=true
